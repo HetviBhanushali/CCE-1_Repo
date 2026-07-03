@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home · Question ⇄ પ્રશ્ન</title>
+<meta name="description" content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+<div id="progress-bar"></div>
+<header class="topbar">
+  <div style="display:flex;align-items:center;gap:.4rem;">
+    <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
+    <a class="brand" href="./index.html">
+      <span class="brand-en">Question</span><span class="brand-gu">પ્રશ્ન</span>
+    </a>
+  </div>
+  <div class="topbar-tools">
+    <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
+    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+  </div>
+</header>
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-heading">Repository</div>
+    <nav>
+      <a class="nav-link active" href="./index.html"><span class="en">Home</span><span class="gu">ઘર</span></a>
+      <a class="nav-link" href="./about.html"><span class="en">About the System</span><span class="gu">વિશે</span></a>
+      <a class="nav-link" href="./concepts.html"><span class="en">NLP Concepts</span><span class="gu">ખ્યાલો</span></a>
+      <a class="nav-link" href="./workflow.html"><span class="en">Workflow</span><span class="gu">કાર્યપ્રવાહ</span></a>
+      <a class="nav-link" href="./comparison.html"><span class="en">Comparison</span><span class="gu">તુલના</span></a>
+      <a class="nav-link" href="./applications.html"><span class="en">Applications</span><span class="gu">ઉપયોગો</span></a>
+      <a class="nav-link" href="./research.html"><span class="en">Research</span><span class="gu">સંશોધન</span></a>
+      <a class="nav-link" href="./sustainability.html"><span class="en">Sustainability</span><span class="gu">ટકાઉપણું</span></a>
+      <a class="nav-link" href="./team.html"><span class="en">Team</span><span class="gu">ટીમ</span></a>
+      <a class="nav-link" href="./references.html"><span class="en">References</span><span class="gu">સંદર્ભો</span></a>
+    </nav>
+  </aside>
+  <main>
+
+<section class="hero">
+  <div class="reveal">
+    <span class="eyebrow">Bilingual NLP · English + Gujarati</span>
+    <h1 class="lockup" style="border:none;padding:0;"><span style="font-family:var(--serif);">Question Answering Systems<span class="gu">પ્રશ્ન અને જવાબ</span></span></h1>
+    <p class="lede">A knowledge repository documenting how machines read a question, search a body of text, and return an answer — built and explained for two languages at once: English and Gujarati.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="concepts.html">Explore Concepts →</a>
+      <a class="btn btn-ghost" href="workflow.html">See the Workflow</a>
+      <a class="btn btn-ghost" href="applications.html">Applications</a>
+    </div>
+  </div>
+  <div class="flow-box reveal">
+    <div class="flow-row"><span>What is the capital of Gujarat?</span></div>
+    <div class="flow-row"><span class="flow-arrow">↓ retrieve → generate ↓</span></div>
+    <div class="flow-row"><span class="gu">ગુજરાતની રાજધાની ગાંધીનગર છે.</span></div>
+    <p style="font-family:var(--sans); font-size:.8rem; color:var(--text-mute); margin-top:.8rem;">One pipeline, two scripts — the same retrieval-and-answer logic runs whether the question arrives in English or Gujarati.</p>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="lockup"><span class="eyebrow">01</span><h2>Why Question Answering Systems?<span class="gu">શા માટે પ્રશ્ન-જવાબ સિસ્ટમ?</span></h2></div>
+  <p style="max-width:70ch; color:var(--text-mute);">Search engines return documents; a Question Answering (QA) system returns the <em>answer itself</em>, pulled or generated from those documents. That shift — from "here are ten links" to "here is the sentence you needed" — is what makes QA the interface layer for education platforms, government helplines, customer support desks, and voice assistants. It matters even more in a multilingual country like India, where the person asking and the document holding the answer may not share a script.</p>
+</section>
+
+<section class="reveal">
+  <div class="lockup"><span class="eyebrow">02</span><h2>English + Gujarati Support<span class="gu">અંગ્રેજી અને ગુજરાતી આધાર</span></h2></div>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Why Gujarati specifically</h3>
+      <p>Gujarati is spoken by over 55 million people, yet most public NLP tooling, benchmarks, and pretrained models are English-first. Building QA support for Gujarati means handling Unicode normalization, a distinct script, and far smaller training corpora.</p>
+    </div>
+    <div class="card">
+      <h3>What "bilingual" means here</h3>
+      <p>Not two separate systems bolted together — one shared retrieval-and-reasoning pipeline with language-aware preprocessing at the front and script-aware generation at the back, detailed on the <a href="workflow.html">Workflow</a> page.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <div class="lockup"><span class="eyebrow">03</span><h2>Project Architecture<span class="gu">પ્રોજેક્ટ આર્કિટેક્ચર</span></h2></div>
+  <div class="pipeline">
+    <div class="pipe-step">Question</div><span class="pipe-arrow">→</span>
+    <div class="pipe-step">Language Detection</div><span class="pipe-arrow">→</span>
+    <div class="pipe-step">Preprocessing</div><span class="pipe-arrow">→</span>
+    <div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span>
+    <div class="pipe-step">Vector Search</div><span class="pipe-arrow">→</span>
+    <div class="pipe-step">Answer Retrieval</div><span class="pipe-arrow">→</span>
+    <div class="pipe-step">Display Answer</div>
+  </div>
+  <p style="color:var(--text-mute);">Full per-language breakdowns, including the Gujarati Unicode handling step, live on the <a href="workflow.html">Workflow page</a>.</p>
+</section>
+
+<section class="reveal">
+  <div class="lockup"><span class="eyebrow">04</span><h2>Repository Sections<span class="gu">પ્રકરણો</span></h2></div>
+  <div class="grid grid-3">
+    <a class="card" style="text-decoration:none;color:inherit;" href="about.html"><h3>About</h3><p>What a QA system is and how it differs from search.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="concepts.html"><h3>NLP Concepts</h3><p>Tokenization, embeddings, transformers, RAG, and more.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="workflow.html"><h3>Workflow</h3><p>The pipeline, in general form and per language.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="comparison.html"><h3>Comparison</h3><p>Retrieval vs. generative QA, BERT vs. mBERT, and more.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="applications.html"><h3>Applications</h3><p>Where bilingual QA earns its keep in the real world.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="research.html"><h3>Research</h3><p>RAG, multilingual LLMs, and the open-source stack.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="sustainability.html"><h3>Sustainability</h3><p>Language access as a form of digital inclusion.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="team.html"><h3>Team</h3><p>Contributions and reflections.</p></a>
+    <a class="card" style="text-decoration:none;color:inherit;" href="references.html"><h3>References</h3><p>Papers, tools, and datasets cited throughout.</p></a>
+  </div>
+</section>
+  </main>
+</div>
+<footer>
+  Question ⇄ પ્રશ્ન — Bilingual Question Answering Systems &middot; A student NLP knowledge repository &middot; Built for the classroom, documented like a product.
+</footer>
+<button id="top-btn" aria-label="Back to top">↑</button>
+<script src="./js/script.js"></script>
+</body>
+</html>
