@@ -1,90 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Comparative Analysis · Question ⇄ પ્રશ્ન</title>
-<meta name="description" content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comparative Analysis · Question</title>
+  <meta name="description"
+    content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-<div id="progress-bar"></div>
-<header class="topbar">
-  <div style="display:flex;align-items:center;gap:.4rem;">
-    <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
-    <a class="brand" href="./index.html">
-      <span class="brand-en">Question</span><span class="brand-gu">પ્રશ્ન</span>
-    </a>
+  <div id="progress-bar"></div>
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:.4rem;">
+      <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
+      <a class="brand" href="./index.html">
+        <span class="brand-en">Question</span>
+      </a>
+    </div>
+    <div class="topbar-tools">
+      <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading">Repository</div>
+      <nav>
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About the System</a>
+        <a class="nav-link" href="./concepts.html">NLP Concepts</a>
+        <a class="nav-link" href="./workflow.html">Workflow</a>
+        <a class="nav-link active" href="./comparison.html">Comparison</a>
+        <a class="nav-link" href="./applications.html">Applications</a>
+        <a class="nav-link" href="./research.html">Research</a>
+        <a class="nav-link" href="./sustainability.html">Sustainability</a>
+        <a class="nav-link" href="./team.html">Team</a>
+        <a class="nav-link" href="./references.html">References</a>
+      </nav>
+    </aside>
+    <main>
+
+      <div class="lockup"><span class="eyebrow">Analysis</span>
+        <h1>Comparative Analysis</h1>
+      </div>
+      <p class="reveal" style="max-width:70ch; color:var(--text-mute);">Five head-to-head comparisons that shaped the
+        design decisions in this pipeline.</p>
+
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Comparison</span>
+          <h2>Retrieval QA vs. Generative QA</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Retrieval QA</th>
+              <th>Generative QA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working</td>
+              <td>Extracts an exact span from source text</td>
+              <td>Generates a new sentence conditioned on retrieved context</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Lower — no generation model needed</td>
+              <td>Higher — needs a language model plus retrieval</td>
+            </tr>
+            <tr>
+              <td>Advantages</td>
+              <td>Grounded, fast, hard to hallucinate</td>
+              <td>Fluent, can synthesize across multiple passages</td>
+            </tr>
+            <tr>
+              <td>Disadvantages</td>
+              <td>Answer must exist verbatim in source</td>
+              <td>Can hallucinate if retrieval is weak</td>
+            </tr>
+            <tr>
+              <td>Use cases</td>
+              <td>FAQ lookup, form-field extraction</td>
+              <td>Conversational assistants, document chatbots</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Comparison</span>
+          <h2>BERT vs. mBERT</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>BERT</th>
+              <th>mBERT</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working</td>
+              <td>Contextual encoder trained on English text</td>
+              <td>Same architecture trained jointly on 100+ languages</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Single-language vocabulary</td>
+              <td>Shared multilingual vocabulary, larger training set</td>
+            </tr>
+            <tr>
+              <td>Advantages</td>
+              <td>Best-in-class for English tasks</td>
+              <td>One model covers many languages, including Gujarati</td>
+            </tr>
+            <tr>
+              <td>Disadvantages</td>
+              <td>No support for non-English scripts</td>
+              <td>Slightly lower per-language accuracy than a dedicated model</td>
+            </tr>
+            <tr>
+              <td>Use cases</td>
+              <td>English extractive QA, classification</td>
+              <td>Cross-lingual and bilingual QA</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Comparison</span>
+          <h2>Word2Vec vs. FastText</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>Word2Vec</th>
+              <th>FastText</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working</td>
+              <td>Learns one vector per whole word</td>
+              <td>Learns vectors from character n-grams, then sums per word</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Simpler, smaller model</td>
+              <td>Slightly heavier due to subword vectors</td>
+            </tr>
+            <tr>
+              <td>Advantages</td>
+              <td>Fast to train, well understood</td>
+              <td>Handles rare and misspelled words gracefully</td>
+            </tr>
+            <tr>
+              <td>Disadvantages</td>
+              <td>Cannot represent out-of-vocabulary words</td>
+              <td>Slightly larger memory footprint</td>
+            </tr>
+            <tr>
+              <td>Use cases</td>
+              <td>General word-similarity tasks</td>
+              <td>Morphologically rich languages like Gujarati</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Comparison</span>
+          <h2>English QA vs. Gujarati QA</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>English QA</th>
+              <th>Gujarati QA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working</td>
+              <td>Direct use of mature English NLP tooling</td>
+              <td>Requires Unicode normalization and script-aware models</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Lower — abundant pretrained resources</td>
+              <td>Higher — smaller pretrained ecosystem</td>
+            </tr>
+            <tr>
+              <td>Advantages</td>
+              <td>High accuracy out of the box</td>
+              <td>Extends access to 55M+ Gujarati speakers</td>
+            </tr>
+            <tr>
+              <td>Disadvantages</td>
+              <td>Excludes non-English speakers</td>
+              <td>Fewer benchmarks to validate against</td>
+            </tr>
+            <tr>
+              <td>Use cases</td>
+              <td>Global-facing products</td>
+              <td>Regional education and citizen services</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Comparison</span>
+          <h2>TF-IDF vs. Embeddings</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Aspect</th>
+              <th>TF-IDF</th>
+              <th>Embeddings</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working</td>
+              <td>Weighs words by frequency and rarity</td>
+              <td>Represents meaning as a dense vector</td>
+            </tr>
+            <tr>
+              <td>Complexity</td>
+              <td>Simple, no training required</td>
+              <td>Requires a pretrained or trained encoder</td>
+            </tr>
+            <tr>
+              <td>Advantages</td>
+              <td>Fast, interpretable, no GPU needed</td>
+              <td>Captures semantic similarity, handles synonyms</td>
+            </tr>
+            <tr>
+              <td>Disadvantages</td>
+              <td>Blind to meaning — exact words must match</td>
+              <td>Needs more compute and a trained model</td>
+            </tr>
+            <tr>
+              <td>Use cases</td>
+              <td>Lightweight keyword search</td>
+              <td>Semantic search, RAG retrieval</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+    </main>
   </div>
-  <div class="topbar-tools">
-    <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
-  </div>
-</header>
-<div class="shell">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-heading">Repository</div>
-    <nav>
-      <a class="nav-link" href="./index.html"><span class="en">Home</span><span class="gu">ઘર</span></a>
-      <a class="nav-link" href="./about.html"><span class="en">About the System</span><span class="gu">વિશે</span></a>
-      <a class="nav-link" href="./concepts.html"><span class="en">NLP Concepts</span><span class="gu">ખ્યાલો</span></a>
-      <a class="nav-link" href="./workflow.html"><span class="en">Workflow</span><span class="gu">કાર્યપ્રવાહ</span></a>
-      <a class="nav-link active" href="./comparison.html"><span class="en">Comparison</span><span class="gu">તુલના</span></a>
-      <a class="nav-link" href="./applications.html"><span class="en">Applications</span><span class="gu">ઉપયોગો</span></a>
-      <a class="nav-link" href="./research.html"><span class="en">Research</span><span class="gu">સંશોધન</span></a>
-      <a class="nav-link" href="./sustainability.html"><span class="en">Sustainability</span><span class="gu">ટકાઉપણું</span></a>
-      <a class="nav-link" href="./team.html"><span class="en">Team</span><span class="gu">ટીમ</span></a>
-      <a class="nav-link" href="./references.html"><span class="en">References</span><span class="gu">સંદર્ભો</span></a>
-    </nav>
-  </aside>
-  <main>
-
-<div class="lockup"><span class="eyebrow">Analysis</span><h1>Comparative Analysis<span class="gu">તુલનાત્મક વિશ્લેષણ</span></h1></div>
-<p class="reveal" style="max-width:70ch; color:var(--text-mute);">Five head-to-head comparisons that shaped the design decisions in this pipeline.</p>
-
-
-    <section class="reveal">
-      <div class="lockup"><span class="eyebrow">Comparison</span><h2>Retrieval QA vs. Generative QA<span class="gu">પુનઃપ્રાપ્તિ vs. જનરેટિવ</span></h2></div>
-      <table><thead><tr><th>Aspect</th><th>Retrieval QA</th><th>Generative QA</th></tr></thead><tbody><tr><td>Working</td><td>Extracts an exact span from source text</td><td>Generates a new sentence conditioned on retrieved context</td></tr><tr><td>Complexity</td><td>Lower — no generation model needed</td><td>Higher — needs a language model plus retrieval</td></tr><tr><td>Advantages</td><td>Grounded, fast, hard to hallucinate</td><td>Fluent, can synthesize across multiple passages</td></tr><tr><td>Disadvantages</td><td>Answer must exist verbatim in source</td><td>Can hallucinate if retrieval is weak</td></tr><tr><td>Use cases</td><td>FAQ lookup, form-field extraction</td><td>Conversational assistants, document chatbots</td></tr></tbody></table>
-    </section>
-    
-
-
-    <section class="reveal">
-      <div class="lockup"><span class="eyebrow">Comparison</span><h2>BERT vs. mBERT<span class="gu">BERT vs. mBERT</span></h2></div>
-      <table><thead><tr><th>Aspect</th><th>BERT</th><th>mBERT</th></tr></thead><tbody><tr><td>Working</td><td>Contextual encoder trained on English text</td><td>Same architecture trained jointly on 100+ languages</td></tr><tr><td>Complexity</td><td>Single-language vocabulary</td><td>Shared multilingual vocabulary, larger training set</td></tr><tr><td>Advantages</td><td>Best-in-class for English tasks</td><td>One model covers many languages, including Gujarati</td></tr><tr><td>Disadvantages</td><td>No support for non-English scripts</td><td>Slightly lower per-language accuracy than a dedicated model</td></tr><tr><td>Use cases</td><td>English extractive QA, classification</td><td>Cross-lingual and bilingual QA</td></tr></tbody></table>
-    </section>
-    
-
-
-    <section class="reveal">
-      <div class="lockup"><span class="eyebrow">Comparison</span><h2>Word2Vec vs. FastText<span class="gu">Word2Vec vs. FastText</span></h2></div>
-      <table><thead><tr><th>Aspect</th><th>Word2Vec</th><th>FastText</th></tr></thead><tbody><tr><td>Working</td><td>Learns one vector per whole word</td><td>Learns vectors from character n-grams, then sums per word</td></tr><tr><td>Complexity</td><td>Simpler, smaller model</td><td>Slightly heavier due to subword vectors</td></tr><tr><td>Advantages</td><td>Fast to train, well understood</td><td>Handles rare and misspelled words gracefully</td></tr><tr><td>Disadvantages</td><td>Cannot represent out-of-vocabulary words</td><td>Slightly larger memory footprint</td></tr><tr><td>Use cases</td><td>General word-similarity tasks</td><td>Morphologically rich languages like Gujarati</td></tr></tbody></table>
-    </section>
-    
-
-
-    <section class="reveal">
-      <div class="lockup"><span class="eyebrow">Comparison</span><h2>English QA vs. Gujarati QA<span class="gu">અંગ્રેજી vs. ગુજરાતી QA</span></h2></div>
-      <table><thead><tr><th>Aspect</th><th>English QA</th><th>Gujarati QA</th></tr></thead><tbody><tr><td>Working</td><td>Direct use of mature English NLP tooling</td><td>Requires Unicode normalization and script-aware models</td></tr><tr><td>Complexity</td><td>Lower — abundant pretrained resources</td><td>Higher — smaller pretrained ecosystem</td></tr><tr><td>Advantages</td><td>High accuracy out of the box</td><td>Extends access to 55M+ Gujarati speakers</td></tr><tr><td>Disadvantages</td><td>Excludes non-English speakers</td><td>Fewer benchmarks to validate against</td></tr><tr><td>Use cases</td><td>Global-facing products</td><td>Regional education and citizen services</td></tr></tbody></table>
-    </section>
-    
-
-
-    <section class="reveal">
-      <div class="lockup"><span class="eyebrow">Comparison</span><h2>TF-IDF vs. Embeddings<span class="gu">TF-IDF vs. એમ્બેડિંગ</span></h2></div>
-      <table><thead><tr><th>Aspect</th><th>TF-IDF</th><th>Embeddings</th></tr></thead><tbody><tr><td>Working</td><td>Weighs words by frequency and rarity</td><td>Represents meaning as a dense vector</td></tr><tr><td>Complexity</td><td>Simple, no training required</td><td>Requires a pretrained or trained encoder</td></tr><tr><td>Advantages</td><td>Fast, interpretable, no GPU needed</td><td>Captures semantic similarity, handles synonyms</td></tr><tr><td>Disadvantages</td><td>Blind to meaning — exact words must match</td><td>Needs more compute and a trained model</td></tr><tr><td>Use cases</td><td>Lightweight keyword search</td><td>Semantic search, RAG retrieval</td></tr></tbody></table>
-    </section>
-    
-  </main>
-</div>
-<footer>
-  Question ⇄ પ્રશ્ન — Bilingual Question Answering Systems &middot; A student NLP knowledge repository &middot; Built for the classroom, documented like a product.
-</footer>
-<button id="top-btn" aria-label="Back to top">↑</button>
-<script src="./js/script.js"></script>
+  <footer>
+    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+  <button id="top-btn" aria-label="Back to top">↑</button>
+  <script src="./js/script.js"></script>
 </body>
+
 </html>

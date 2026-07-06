@@ -1,183 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NLP Concepts · Question ⇄ પ્રશ્ન</title>
-<meta name="description" content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NLP Concepts · Question</title>
+  <meta name="description"
+    content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-<div id="progress-bar"></div>
-<header class="topbar">
-  <div style="display:flex;align-items:center;gap:.4rem;">
-    <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
-    <a class="brand" href="./index.html">
-      <span class="brand-en">Question</span><span class="brand-gu">પ્રશ્ન</span>
-    </a>
+  <div id="progress-bar"></div>
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:.4rem;">
+      <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
+      <a class="brand" href="./index.html">
+        <span class="brand-en">Question</span>
+      </a>
+    </div>
+    <div class="topbar-tools">
+      <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading">Repository</div>
+      <nav>
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About the System</a>
+        <a class="nav-link active" href="./concepts.html">NLP Concepts</a>
+        <a class="nav-link" href="./workflow.html">Workflow</a>
+        <a class="nav-link" href="./comparison.html">Comparison</a>
+        <a class="nav-link" href="./applications.html">Applications</a>
+        <a class="nav-link" href="./research.html">Research</a>
+        <a class="nav-link" href="./sustainability.html">Sustainability</a>
+        <a class="nav-link" href="./team.html">Team</a>
+        <a class="nav-link" href="./references.html">References</a>
+      </nav>
+    </aside>
+    <main>
+
+      <div class="lockup"><span class="eyebrow">Reference</span>
+        <h1>NLP Concepts</h1>
+      </div>
+      <p class="reveal" style="max-width:70ch; color:var(--text-mute);">Nine building blocks behind the pipeline, each
+        explained the same way: definition, purpose, mechanism, a worked example, and where it shows up in practice. Use
+        the search box above to filter.</p>
+      <section class="grid grid-2 reveal">
+
+        <details class="card"
+          data-search="Question Answering An NLP task where a system returns a direct answer to a natural-language question instead of a list of documents. Collapses the gap between asking and knowing — the user gets the answer, not the homework of finding it. Combines retrieval (finding relevant text) with either span extraction or answer generation. Q: &quot;Who founded Infosys?&quot; → A: &quot;N. R. Narayana Murthy.&quot;">
+          <summary>Question Answering</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>An NLP task where a system returns a direct answer to a natural-language question instead of a list of
+              documents.</dd>
+            <dt>Purpose</dt>
+            <dd>Collapses the gap between asking and knowing — the user gets the answer, not the homework of finding it.
+            </dd>
+            <dt>How it works</dt>
+            <dd>Combines retrieval (finding relevant text) with either span extraction or answer generation.</dd>
+            <dt>Example</dt>
+            <dd>Q: "Who founded Infosys?" → A: "N. R. Narayana Murthy."</dd>
+            <dt>Advantages</dt>
+            <dd>Fast, precise, reduces reading effort.</dd>
+            <dt>Limitations</dt>
+            <dd>Only as good as its source documents and retrieval quality.</dd>
+            <dt>Applications</dt>
+            <dd>Search engines, chatbots, voice assistants, helpdesks.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Tokenization Splitting raw text into smaller units — words, subwords, or characters — that a model can process. Neural networks operate on numbers, not text; tokenization is the first translation step. A tokenizer applies rules or a learned vocabulary (e.g. Byte-Pair Encoding) to break text into tokens, then maps each token to an ID. &quot;Gandhinagar&quot; → [&quot;Gandhi&quot;, &quot;##nagar&quot;] in a subword tokenizer.">
+          <summary>Tokenization</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Splitting raw text into smaller units — words, subwords, or characters — that a model can process.</dd>
+            <dt>Purpose</dt>
+            <dd>Neural networks operate on numbers, not text; tokenization is the first translation step.</dd>
+            <dt>How it works</dt>
+            <dd>A tokenizer applies rules or a learned vocabulary (e.g. Byte-Pair Encoding) to break text into tokens,
+              then maps each token to an ID.</dd>
+            <dt>Example</dt>
+            <dd>"Gandhinagar" → ["Gandhi", "##nagar"] in a subword tokenizer.</dd>
+            <dt>Advantages</dt>
+            <dd>Handles rare and compound words gracefully via subwords.</dd>
+            <dt>Limitations</dt>
+            <dd>Script-specific quirks (like Gujarati conjuncts) need tokenizers trained on that script, not borrowed
+              from English.</dd>
+            <dt>Applications</dt>
+            <dd>Every step downstream: embeddings, search, generation.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Embeddings Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous space. Let a computer compare meaning, not just matching characters — 'doctor' and 'physician' land near each other. A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that vector space. A 384-dimension vector representing the sentence about the capital of Gujarat.">
+          <summary>Embeddings</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous
+              space.</dd>
+            <dt>Purpose</dt>
+            <dd>Let a computer compare meaning, not just matching characters — 'doctor' and 'physician' land near each
+              other.</dd>
+            <dt>How it works</dt>
+            <dd>A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that
+              vector space.</dd>
+            <dt>Example</dt>
+            <dd>A 384-dimension vector representing the sentence "The capital of Gujarat is Gandhinagar."</dd>
+            <dt>Advantages</dt>
+            <dd>Enables semantic (meaning-based) search rather than exact keyword matching.</dd>
+            <dt>Limitations</dt>
+            <dd>Quality depends entirely on training data; multilingual embeddings need multilingual training corpora.
+            </dd>
+            <dt>Applications</dt>
+            <dd>Semantic search, clustering, recommendation, retrieval for QA.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Transformers A neural network architecture built on self-attention, which lets every word in a sequence weigh every other word. Captures long-range context far better than earlier recurrent architectures, and trains in parallel. Stacks of attention and feed-forward layers process an entire sequence at once, learning which words matter to which. BERT, GPT, and Llama are all transformer variants.">
+          <summary>Transformers</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>A neural network architecture built on self-attention, which lets every word in a sequence weigh every
+              other word.</dd>
+            <dt>Purpose</dt>
+            <dd>Captures long-range context far better than earlier recurrent architectures, and trains in parallel.
+            </dd>
+            <dt>How it works</dt>
+            <dd>Stacks of attention and feed-forward layers process an entire sequence at once, learning which words
+              matter to which.</dd>
+            <dt>Example</dt>
+            <dd>BERT, GPT, and Llama are all transformer variants.</dd>
+            <dt>Advantages</dt>
+            <dd>State-of-the-art accuracy across nearly all NLP tasks.</dd>
+            <dt>Limitations</dt>
+            <dd>Computationally heavy; needs large data and compute to train from scratch.</dd>
+            <dt>Applications</dt>
+            <dd>Translation, summarization, question answering, code generation.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Retrieval The process of finding the passages most relevant to a query from a large collection of documents. A language model can't read an entire library before answering — retrieval narrows that library to a few relevant pages. A query is embedded, then compared against pre-embedded document chunks using a similarity metric like cosine distance. Given a 300-page textbook, retrieval surfaces the 3 paragraphs relevant to the question asked.">
+          <summary>Retrieval</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>The process of finding the passages most relevant to a query from a large collection of documents.</dd>
+            <dt>Purpose</dt>
+            <dd>A language model can't read an entire library before answering — retrieval narrows that library to a few
+              relevant pages.</dd>
+            <dt>How it works</dt>
+            <dd>A query is embedded, then compared against pre-embedded document chunks using a similarity metric like
+              cosine distance.</dd>
+            <dt>Example</dt>
+            <dd>Given a 300-page textbook, retrieval surfaces the 3 paragraphs relevant to the question asked.</dd>
+            <dt>Advantages</dt>
+            <dd>Keeps answers grounded in real source material.</dd>
+            <dt>Limitations</dt>
+            <dd>Poor chunking or embedding choices can bury the right passage.</dd>
+            <dt>Applications</dt>
+            <dd>RAG pipelines, enterprise search, legal and medical document lookup.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="RAG Retrieval-Augmented Generation An architecture that retrieves relevant passages first, then feeds them to a language model to generate the final answer. Combines the factual grounding of retrieval with the fluency of generation. Query → retrieve top-k chunks from a vector database → construct a prompt with those chunks → language model generates an answer. A PDF QA chatbot that answers questions strictly from an uploaded document.">
+          <summary>RAG (Retrieval-Augmented Generation)</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>An architecture that retrieves relevant passages first, then feeds them to a language model to generate
+              the final answer.</dd>
+            <dt>Purpose</dt>
+            <dd>Combines the factual grounding of retrieval with the fluency of generation.</dd>
+            <dt>How it works</dt>
+            <dd>Query → retrieve top-k chunks from a vector database → construct a prompt with those chunks → language
+              model generates an answer.</dd>
+            <dt>Example</dt>
+            <dd>A PDF Q&A chatbot that answers questions strictly from an uploaded document.</dd>
+            <dt>Advantages</dt>
+            <dd>Reduces hallucination compared to a language model answering from memory alone.</dd>
+            <dt>Limitations</dt>
+            <dd>Still bounded by retrieval quality and context window size.</dd>
+            <dt>Applications</dt>
+            <dd>Document chatbots, customer support, internal knowledge assistants.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="FAISS Facebook AI Similarity Search an open-source library for fast nearest-neighbour search over dense vectors. Makes it feasible to search millions of embeddings in milliseconds. Indexes vectors using structures like inverted files or HNSW graphs to avoid brute-force comparison. Searching 100,000 embedded paragraphs for the 5 closest to a question vector.">
+          <summary>FAISS</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Facebook AI Similarity Search — an open-source library for fast nearest-neighbour search over dense
+              vectors.</dd>
+            <dt>Purpose</dt>
+            <dd>Makes it feasible to search millions of embeddings in milliseconds.</dd>
+            <dt>How it works</dt>
+            <dd>Indexes vectors using structures like inverted files or HNSW graphs to avoid brute-force comparison.
+            </dd>
+            <dt>Example</dt>
+            <dd>Searching 100,000 embedded paragraphs for the 5 closest to a question vector.</dd>
+            <dt>Advantages</dt>
+            <dd>Extremely fast, scales to large corpora, runs locally.</dd>
+            <dt>Limitations</dt>
+            <dd>Approximate search trades a small amount of accuracy for speed at scale.</dd>
+            <dt>Applications</dt>
+            <dd>Vector databases, RAG pipelines, recommendation systems.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="BERT Bidirectional Encoder Representations from Transformers a transformer model pretrained to understand context from both directions. Produces rich contextual representations of text, useful for classification, extraction, and embeddings. Pretrained on masked-word prediction and next-sentence prediction over large text corpora, then fine-tuned for specific tasks. Fine-tuned BERT extracting the exact answer span from a passage for a given question.">
+          <summary>BERT</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Bidirectional Encoder Representations from Transformers — a transformer model pretrained to understand
+              context from both directions.</dd>
+            <dt>Purpose</dt>
+            <dd>Produces rich contextual representations of text, useful for classification, extraction, and embeddings.
+            </dd>
+            <dt>How it works</dt>
+            <dd>Pretrained on masked-word prediction and next-sentence prediction over large text corpora, then
+              fine-tuned for specific tasks.</dd>
+            <dt>Example</dt>
+            <dd>Fine-tuned BERT extracting the exact answer span from a passage for a given question.</dd>
+            <dt>Advantages</dt>
+            <dd>Strong general-purpose language understanding.</dd>
+            <dt>Limitations</dt>
+            <dd>English-centric by default; needs a multilingual variant for Gujarati.</dd>
+            <dt>Applications</dt>
+            <dd>Extractive QA, classification, named entity recognition.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Multilingual Models Language models trained on text from many languages simultaneously, sharing a single vocabulary and parameter set. Let one model serve many languages, including lower-resource ones like Gujarati, without training from scratch for each. Trained on multilingual corpora with a shared subword vocabulary, learning cross-lingual representations. mBERT and multilingual sentence-embedding models supporting Gujarati text.">
+          <summary>Multilingual Models</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Language models trained on text from many languages simultaneously, sharing a single vocabulary and
+              parameter set.</dd>
+            <dt>Purpose</dt>
+            <dd>Let one model serve many languages, including lower-resource ones like Gujarati, without training from
+              scratch for each.</dd>
+            <dt>How it works</dt>
+            <dd>Trained on multilingual corpora with a shared subword vocabulary, learning cross-lingual
+              representations.</dd>
+            <dt>Example</dt>
+            <dd>mBERT and multilingual sentence-embedding models supporting Gujarati text.</dd>
+            <dt>Advantages</dt>
+            <dd>One pipeline serves multiple languages; cross-lingual transfer helps low-resource languages.</dd>
+            <dt>Limitations</dt>
+            <dd>Per-language performance is usually a notch below a model trained specifically for that language.</dd>
+            <dt>Applications</dt>
+            <dd>Bilingual and multilingual QA, cross-lingual search, translation.</dd>
+          </dl>
+        </details>
+
+      </section>
+    </main>
   </div>
-  <div class="topbar-tools">
-    <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
-  </div>
-</header>
-<div class="shell">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-heading">Repository</div>
-    <nav>
-      <a class="nav-link" href="./index.html"><span class="en">Home</span><span class="gu">ઘર</span></a>
-      <a class="nav-link" href="./about.html"><span class="en">About the System</span><span class="gu">વિશે</span></a>
-      <a class="nav-link active" href="./concepts.html"><span class="en">NLP Concepts</span><span class="gu">ખ્યાલો</span></a>
-      <a class="nav-link" href="./workflow.html"><span class="en">Workflow</span><span class="gu">કાર્યપ્રવાહ</span></a>
-      <a class="nav-link" href="./comparison.html"><span class="en">Comparison</span><span class="gu">તુલના</span></a>
-      <a class="nav-link" href="./applications.html"><span class="en">Applications</span><span class="gu">ઉપયોગો</span></a>
-      <a class="nav-link" href="./research.html"><span class="en">Research</span><span class="gu">સંશોધન</span></a>
-      <a class="nav-link" href="./sustainability.html"><span class="en">Sustainability</span><span class="gu">ટકાઉપણું</span></a>
-      <a class="nav-link" href="./team.html"><span class="en">Team</span><span class="gu">ટીમ</span></a>
-      <a class="nav-link" href="./references.html"><span class="en">References</span><span class="gu">સંદર્ભો</span></a>
-    </nav>
-  </aside>
-  <main>
-
-<div class="lockup"><span class="eyebrow">Reference</span><h1>NLP Concepts<span class="gu">ખ્યાલો</span></h1></div>
-<p class="reveal" style="max-width:70ch; color:var(--text-mute);">Nine building blocks behind the pipeline, each explained the same way: definition, purpose, mechanism, a worked example, and where it shows up in practice. Use the search box above to filter.</p>
-<section class="grid grid-2 reveal">
-
-    <details class="card" data-search="Question Answering પ્રશ્ન-જવાબ An NLP task where a system returns a direct answer to a natural-language question instead of a list of documents. Collapses the gap between asking and knowing — the user gets the answer, not the homework of finding it. Combines retrieval (finding relevant text) with either span extraction or answer generation. Q: "Who founded Infosys?" → A: "N. R. Narayana Murthy."">
-      <summary>Question Answering <span class="gu-tag" style="display:inline;font-size:.8rem;">પ્રશ્ન-જવાબ</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>An NLP task where a system returns a direct answer to a natural-language question instead of a list of documents.</dd>
-        <dt>Purpose</dt><dd>Collapses the gap between asking and knowing — the user gets the answer, not the homework of finding it.</dd>
-        <dt>How it works</dt><dd>Combines retrieval (finding relevant text) with either span extraction or answer generation.</dd>
-        <dt>Example</dt><dd>Q: "Who founded Infosys?" → A: "N. R. Narayana Murthy."</dd>
-        <dt>Advantages</dt><dd>Fast, precise, reduces reading effort.</dd>
-        <dt>Limitations</dt><dd>Only as good as its source documents and retrieval quality.</dd>
-        <dt>Applications</dt><dd>Search engines, chatbots, voice assistants, helpdesks.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="Tokenization ટોકનાઇઝેશન Splitting raw text into smaller units — words, subwords, or characters — that a model can process. Neural networks operate on numbers, not text; tokenization is the first translation step. A tokenizer applies rules or a learned vocabulary (e.g. Byte-Pair Encoding) to break text into tokens, then maps each token to an ID. "Gandhinagar" → ["Gandhi", "##nagar"] in a subword tokenizer.">
-      <summary>Tokenization <span class="gu-tag" style="display:inline;font-size:.8rem;">ટોકનાઇઝેશન</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>Splitting raw text into smaller units — words, subwords, or characters — that a model can process.</dd>
-        <dt>Purpose</dt><dd>Neural networks operate on numbers, not text; tokenization is the first translation step.</dd>
-        <dt>How it works</dt><dd>A tokenizer applies rules or a learned vocabulary (e.g. Byte-Pair Encoding) to break text into tokens, then maps each token to an ID.</dd>
-        <dt>Example</dt><dd>"Gandhinagar" → ["Gandhi", "##nagar"] in a subword tokenizer.</dd>
-        <dt>Advantages</dt><dd>Handles rare and compound words gracefully via subwords.</dd>
-        <dt>Limitations</dt><dd>Script-specific quirks (like Gujarati conjuncts) need tokenizers trained on that script, not borrowed from English.</dd>
-        <dt>Applications</dt><dd>Every step downstream: embeddings, search, generation.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="Embeddings એમ્બેડિંગ Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous space. Let a computer compare meaning, not just matching characters — 'doctor' and 'physician' land near each other. A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that vector space. A 384-dimension vector representing the sentence "ગુજરાતની રાજધાની ગાંધીનગર છે."">
-      <summary>Embeddings <span class="gu-tag" style="display:inline;font-size:.8rem;">એમ્બેડિંગ</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous space.</dd>
-        <dt>Purpose</dt><dd>Let a computer compare meaning, not just matching characters — 'doctor' and 'physician' land near each other.</dd>
-        <dt>How it works</dt><dd>A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that vector space.</dd>
-        <dt>Example</dt><dd>A 384-dimension vector representing the sentence "ગુજરાતની રાજધાની ગાંધીનગર છે."</dd>
-        <dt>Advantages</dt><dd>Enables semantic (meaning-based) search rather than exact keyword matching.</dd>
-        <dt>Limitations</dt><dd>Quality depends entirely on training data; multilingual embeddings need multilingual training corpora.</dd>
-        <dt>Applications</dt><dd>Semantic search, clustering, recommendation, retrieval for QA.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="Transformers ટ્રાન્સફોર્મર A neural network architecture built on self-attention, which lets every word in a sequence weigh every other word. Captures long-range context far better than earlier recurrent architectures, and trains in parallel. Stacks of attention and feed-forward layers process an entire sequence at once, learning which words matter to which. BERT, GPT, and Llama are all transformer variants.">
-      <summary>Transformers <span class="gu-tag" style="display:inline;font-size:.8rem;">ટ્રાન્સફોર્મર</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>A neural network architecture built on self-attention, which lets every word in a sequence weigh every other word.</dd>
-        <dt>Purpose</dt><dd>Captures long-range context far better than earlier recurrent architectures, and trains in parallel.</dd>
-        <dt>How it works</dt><dd>Stacks of attention and feed-forward layers process an entire sequence at once, learning which words matter to which.</dd>
-        <dt>Example</dt><dd>BERT, GPT, and Llama are all transformer variants.</dd>
-        <dt>Advantages</dt><dd>State-of-the-art accuracy across nearly all NLP tasks.</dd>
-        <dt>Limitations</dt><dd>Computationally heavy; needs large data and compute to train from scratch.</dd>
-        <dt>Applications</dt><dd>Translation, summarization, question answering, code generation.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="Retrieval પુનઃપ્રાપ્તિ The process of finding the passages most relevant to a query from a large collection of documents. A language model can't read an entire library before answering — retrieval narrows that library to a few relevant pages. A query is embedded, then compared against pre-embedded document chunks using a similarity metric like cosine distance. Given a 300-page textbook, retrieval surfaces the 3 paragraphs relevant to the question asked.">
-      <summary>Retrieval <span class="gu-tag" style="display:inline;font-size:.8rem;">પુનઃપ્રાપ્તિ</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>The process of finding the passages most relevant to a query from a large collection of documents.</dd>
-        <dt>Purpose</dt><dd>A language model can't read an entire library before answering — retrieval narrows that library to a few relevant pages.</dd>
-        <dt>How it works</dt><dd>A query is embedded, then compared against pre-embedded document chunks using a similarity metric like cosine distance.</dd>
-        <dt>Example</dt><dd>Given a 300-page textbook, retrieval surfaces the 3 paragraphs relevant to the question asked.</dd>
-        <dt>Advantages</dt><dd>Keeps answers grounded in real source material.</dd>
-        <dt>Limitations</dt><dd>Poor chunking or embedding choices can bury the right passage.</dd>
-        <dt>Applications</dt><dd>RAG pipelines, enterprise search, legal and medical document lookup.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="RAG (Retrieval-Augmented Generation) RAG An architecture that retrieves relevant passages first, then feeds them to a language model to generate the final answer. Combines the factual grounding of retrieval with the fluency of generation. Query → retrieve top-k chunks from a vector database → construct a prompt with those chunks → language model generates an answer. A PDF Q&A chatbot that answers questions strictly from an uploaded document.">
-      <summary>RAG (Retrieval-Augmented Generation) <span class="gu-tag" style="display:inline;font-size:.8rem;">RAG</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>An architecture that retrieves relevant passages first, then feeds them to a language model to generate the final answer.</dd>
-        <dt>Purpose</dt><dd>Combines the factual grounding of retrieval with the fluency of generation.</dd>
-        <dt>How it works</dt><dd>Query → retrieve top-k chunks from a vector database → construct a prompt with those chunks → language model generates an answer.</dd>
-        <dt>Example</dt><dd>A PDF Q&A chatbot that answers questions strictly from an uploaded document.</dd>
-        <dt>Advantages</dt><dd>Reduces hallucination compared to a language model answering from memory alone.</dd>
-        <dt>Limitations</dt><dd>Still bounded by retrieval quality and context window size.</dd>
-        <dt>Applications</dt><dd>Document chatbots, customer support, internal knowledge assistants.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="FAISS FAISS Facebook AI Similarity Search — an open-source library for fast nearest-neighbour search over dense vectors. Makes it feasible to search millions of embeddings in milliseconds. Indexes vectors using structures like inverted files or HNSW graphs to avoid brute-force comparison. Searching 100,000 embedded paragraphs for the 5 closest to a question vector.">
-      <summary>FAISS <span class="gu-tag" style="display:inline;font-size:.8rem;">FAISS</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>Facebook AI Similarity Search — an open-source library for fast nearest-neighbour search over dense vectors.</dd>
-        <dt>Purpose</dt><dd>Makes it feasible to search millions of embeddings in milliseconds.</dd>
-        <dt>How it works</dt><dd>Indexes vectors using structures like inverted files or HNSW graphs to avoid brute-force comparison.</dd>
-        <dt>Example</dt><dd>Searching 100,000 embedded paragraphs for the 5 closest to a question vector.</dd>
-        <dt>Advantages</dt><dd>Extremely fast, scales to large corpora, runs locally.</dd>
-        <dt>Limitations</dt><dd>Approximate search trades a small amount of accuracy for speed at scale.</dd>
-        <dt>Applications</dt><dd>Vector databases, RAG pipelines, recommendation systems.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="BERT BERT Bidirectional Encoder Representations from Transformers — a transformer model pretrained to understand context from both directions. Produces rich contextual representations of text, useful for classification, extraction, and embeddings. Pretrained on masked-word prediction and next-sentence prediction over large text corpora, then fine-tuned for specific tasks. Fine-tuned BERT extracting the exact answer span from a passage for a given question.">
-      <summary>BERT <span class="gu-tag" style="display:inline;font-size:.8rem;">BERT</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>Bidirectional Encoder Representations from Transformers — a transformer model pretrained to understand context from both directions.</dd>
-        <dt>Purpose</dt><dd>Produces rich contextual representations of text, useful for classification, extraction, and embeddings.</dd>
-        <dt>How it works</dt><dd>Pretrained on masked-word prediction and next-sentence prediction over large text corpora, then fine-tuned for specific tasks.</dd>
-        <dt>Example</dt><dd>Fine-tuned BERT extracting the exact answer span from a passage for a given question.</dd>
-        <dt>Advantages</dt><dd>Strong general-purpose language understanding.</dd>
-        <dt>Limitations</dt><dd>English-centric by default; needs a multilingual variant for Gujarati.</dd>
-        <dt>Applications</dt><dd>Extractive QA, classification, named entity recognition.</dd>
-      </dl>
-    </details>
-    
-
-    <details class="card" data-search="Multilingual Models બહુભાષી મોડેલ Language models trained on text from many languages simultaneously, sharing a single vocabulary and parameter set. Let one model serve many languages, including lower-resource ones like Gujarati, without training from scratch for each. Trained on multilingual corpora with a shared subword vocabulary, learning cross-lingual representations. mBERT and multilingual sentence-embedding models supporting Gujarati text.">
-      <summary>Multilingual Models <span class="gu-tag" style="display:inline;font-size:.8rem;">બહુભાષી મોડેલ</span></summary>
-      <dl>
-        <dt>Definition</dt><dd>Language models trained on text from many languages simultaneously, sharing a single vocabulary and parameter set.</dd>
-        <dt>Purpose</dt><dd>Let one model serve many languages, including lower-resource ones like Gujarati, without training from scratch for each.</dd>
-        <dt>How it works</dt><dd>Trained on multilingual corpora with a shared subword vocabulary, learning cross-lingual representations.</dd>
-        <dt>Example</dt><dd>mBERT and multilingual sentence-embedding models supporting Gujarati text.</dd>
-        <dt>Advantages</dt><dd>One pipeline serves multiple languages; cross-lingual transfer helps low-resource languages.</dd>
-        <dt>Limitations</dt><dd>Per-language performance is usually a notch below a model trained specifically for that language.</dd>
-        <dt>Applications</dt><dd>Bilingual and multilingual QA, cross-lingual search, translation.</dd>
-      </dl>
-    </details>
-    
-</section>
-  </main>
-</div>
-<footer>
-  Question ⇄ પ્રશ્ન — Bilingual Question Answering Systems &middot; A student NLP knowledge repository &middot; Built for the classroom, documented like a product.
-</footer>
-<button id="top-btn" aria-label="Back to top">↑</button>
-<script src="./js/script.js"></script>
+  <footer>
+    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+  <button id="top-btn" aria-label="Back to top">↑</button>
+  <script src="./js/script.js"></script>
 </body>
+
 </html>

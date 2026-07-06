@@ -1,68 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sustainability · Question ⇄ પ્રશ્ન</title>
-<meta name="description" content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainability · Question</title>
+  <meta name="description"
+    content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-<div id="progress-bar"></div>
-<header class="topbar">
-  <div style="display:flex;align-items:center;gap:.4rem;">
-    <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
-    <a class="brand" href="./index.html">
-      <span class="brand-en">Question</span><span class="brand-gu">પ્રશ્ન</span>
-    </a>
+  <div id="progress-bar"></div>
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:.4rem;">
+      <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
+      <a class="brand" href="./index.html">
+        <span class="brand-en">Question</span>
+      </a>
+    </div>
+    <div class="topbar-tools">
+      <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading">Repository</div>
+      <nav>
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About the System</a>
+        <a class="nav-link" href="./concepts.html">NLP Concepts</a>
+        <a class="nav-link" href="./workflow.html">Workflow</a>
+        <a class="nav-link" href="./comparison.html">Comparison</a>
+        <a class="nav-link" href="./applications.html">Applications</a>
+        <a class="nav-link" href="./research.html">Research</a>
+        <a class="nav-link active" href="./sustainability.html">Sustainability</a>
+        <a class="nav-link" href="./team.html">Team</a>
+        <a class="nav-link" href="./references.html">References</a>
+      </nav>
+    </aside>
+    <main>
+
+      <div class="lockup"><span class="eyebrow">Impact</span>
+        <h1>Sustainability</h1>
+      </div>
+
+      <section class="reveal card" style="max-width:76ch;">
+        <p>Sustainability in a language-technology project is rarely about energy alone — it is about who gets left out
+          when a system is built for only one language. A Question Answering system that works exclusively in English
+          quietly assumes its users already read English comfortably, which excludes a large share of the very
+          population it could serve. Building genuine Gujarati support is a form of <strong>language
+            accessibility</strong>: making information systems usable by people in the language they think in, not the
+          language the tooling happened to be built in first.</p>
+
+        <p><strong>Gujarati digital inclusion</strong> is a concrete instance of this problem. Gujarati is spoken by
+          tens of millions of people, yet the language remains underrepresented in NLP benchmarks, pretrained models,
+          and training corpora compared to English or even Hindi. Every project that adds a working, tested Gujarati
+          pipeline — however small in scale — adds to a public body of evidence that regional-language NLP is
+          achievable, and nudges the next tool built in this space to consider Gujarati from the start rather than as an
+          afterthought.</p>
+
+        <p>The clearest beneficiary is <strong>educational support</strong>. A student who can ask a question in
+          Gujarati and receive an answer grounded in their own textbook removes a translation step that otherwise sits
+          between the student and understanding. That matters most for concepts that are already difficult; forcing a
+          student to first mentally translate a question into English before they can even search for help adds friction
+          exactly where it is least affordable.</p>
+
+        <p><strong>Citizen services</strong> extend the same argument to public administration. Government schemes,
+          forms, and advisories are frequently published in regional languages precisely because that is the language
+          their intended audience is comfortable with — yet the digital tools built to search and explain those
+          documents are often English-only. A bilingual QA layer closes that gap without requiring every citizen-facing
+          document to be duplicated or every citizen to be bilingual.</p>
+
+        <p>Finally, <strong>rural information access</strong> is where language and infrastructure inclusion overlap
+          most visibly. Rural users are statistically more likely to be Gujarati-first speakers and less likely to have
+          reliable access to a human translator or intermediary. A system that answers directly in Gujarati — without
+          needing a third party to bridge the language gap — extends the reach of information that would otherwise stop
+          at the district town.</p>
+
+        <p>None of this claims that one student project solves regional-language exclusion in NLP. It claims something
+          smaller and more honest: that treating Gujarati as a first-class input rather than a stretch goal is a
+          deliberate, replicable design choice, and that choice is what sustainability looks like at the scale of a
+          single system.</p>
+      </section>
+    </main>
   </div>
-  <div class="topbar-tools">
-    <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
-  </div>
-</header>
-<div class="shell">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-heading">Repository</div>
-    <nav>
-      <a class="nav-link" href="./index.html"><span class="en">Home</span><span class="gu">ઘર</span></a>
-      <a class="nav-link" href="./about.html"><span class="en">About the System</span><span class="gu">વિશે</span></a>
-      <a class="nav-link" href="./concepts.html"><span class="en">NLP Concepts</span><span class="gu">ખ્યાલો</span></a>
-      <a class="nav-link" href="./workflow.html"><span class="en">Workflow</span><span class="gu">કાર્યપ્રવાહ</span></a>
-      <a class="nav-link" href="./comparison.html"><span class="en">Comparison</span><span class="gu">તુલના</span></a>
-      <a class="nav-link" href="./applications.html"><span class="en">Applications</span><span class="gu">ઉપયોગો</span></a>
-      <a class="nav-link" href="./research.html"><span class="en">Research</span><span class="gu">સંશોધન</span></a>
-      <a class="nav-link active" href="./sustainability.html"><span class="en">Sustainability</span><span class="gu">ટકાઉપણું</span></a>
-      <a class="nav-link" href="./team.html"><span class="en">Team</span><span class="gu">ટીમ</span></a>
-      <a class="nav-link" href="./references.html"><span class="en">References</span><span class="gu">સંદર્ભો</span></a>
-    </nav>
-  </aside>
-  <main>
-
-<div class="lockup"><span class="eyebrow">Impact</span><h1>Sustainability<span class="gu">ટકાઉપણું</span></h1></div>
-
-<section class="reveal card" style="max-width:76ch;">
-<p>Sustainability in a language-technology project is rarely about energy alone — it is about who gets left out when a system is built for only one language. A Question Answering system that works exclusively in English quietly assumes its users already read English comfortably, which excludes a large share of the very population it could serve. Building genuine Gujarati support is a form of <strong>language accessibility</strong>: making information systems usable by people in the language they think in, not the language the tooling happened to be built in first.</p>
-
-<p><strong>Gujarati digital inclusion</strong> is a concrete instance of this problem. Gujarati is spoken by tens of millions of people, yet the language remains underrepresented in NLP benchmarks, pretrained models, and training corpora compared to English or even Hindi. Every project that adds a working, tested Gujarati pipeline — however small in scale — adds to a public body of evidence that regional-language NLP is achievable, and nudges the next tool built in this space to consider Gujarati from the start rather than as an afterthought.</p>
-
-<p>The clearest beneficiary is <strong>educational support</strong>. A student who can ask a question in Gujarati and receive an answer grounded in their own textbook removes a translation step that otherwise sits between the student and understanding. That matters most for concepts that are already difficult; forcing a student to first mentally translate a question into English before they can even search for help adds friction exactly where it is least affordable.</p>
-
-<p><strong>Citizen services</strong> extend the same argument to public administration. Government schemes, forms, and advisories are frequently published in regional languages precisely because that is the language their intended audience is comfortable with — yet the digital tools built to search and explain those documents are often English-only. A bilingual QA layer closes that gap without requiring every citizen-facing document to be duplicated or every citizen to be bilingual.</p>
-
-<p>Finally, <strong>rural information access</strong> is where language and infrastructure inclusion overlap most visibly. Rural users are statistically more likely to be Gujarati-first speakers and less likely to have reliable access to a human translator or intermediary. A system that answers directly in Gujarati — without needing a third party to bridge the language gap — extends the reach of information that would otherwise stop at the district town.</p>
-
-<p>None of this claims that one student project solves regional-language exclusion in NLP. It claims something smaller and more honest: that treating Gujarati as a first-class input rather than a stretch goal is a deliberate, replicable design choice, and that choice is what sustainability looks like at the scale of a single system.</p>
-</section>
-  </main>
-</div>
-<footer>
-  Question ⇄ પ્રશ્ન — Bilingual Question Answering Systems &middot; A student NLP knowledge repository &middot; Built for the classroom, documented like a product.
-</footer>
-<button id="top-btn" aria-label="Back to top">↑</button>
-<script src="./js/script.js"></script>
+  <footer>
+    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository
+  </footer>
+  <button id="top-btn" aria-label="Back to top">↑</button>
+  <script src="./js/script.js"></script>
 </body>
+
 </html>

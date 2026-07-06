@@ -1,74 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>About the System · Question ⇄ પ્રશ્ન</title>
-<meta name="description" content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About the System · Question</title>
+  <meta name="description"
+    content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-<div id="progress-bar"></div>
-<header class="topbar">
-  <div style="display:flex;align-items:center;gap:.4rem;">
-    <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
-    <a class="brand" href="./index.html">
-      <span class="brand-en">Question</span><span class="brand-gu">પ્રશ્ન</span>
-    </a>
-  </div>
-  <div class="topbar-tools">
-    <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
-  </div>
-</header>
-<div class="shell">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-heading">Repository</div>
-    <nav>
-      <a class="nav-link" href="./index.html"><span class="en">Home</span><span class="gu">ઘર</span></a>
-      <a class="nav-link active" href="./about.html"><span class="en">About the System</span><span class="gu">વિશે</span></a>
-      <a class="nav-link" href="./concepts.html"><span class="en">NLP Concepts</span><span class="gu">ખ્યાલો</span></a>
-      <a class="nav-link" href="./workflow.html"><span class="en">Workflow</span><span class="gu">કાર્યપ્રવાહ</span></a>
-      <a class="nav-link" href="./comparison.html"><span class="en">Comparison</span><span class="gu">તુલના</span></a>
-      <a class="nav-link" href="./applications.html"><span class="en">Applications</span><span class="gu">ઉપયોગો</span></a>
-      <a class="nav-link" href="./research.html"><span class="en">Research</span><span class="gu">સંશોધન</span></a>
-      <a class="nav-link" href="./sustainability.html"><span class="en">Sustainability</span><span class="gu">ટકાઉપણું</span></a>
-      <a class="nav-link" href="./team.html"><span class="en">Team</span><span class="gu">ટીમ</span></a>
-      <a class="nav-link" href="./references.html"><span class="en">References</span><span class="gu">સંદર્ભો</span></a>
-    </nav>
-  </aside>
-  <main>
-
-<div class="lockup"><span class="eyebrow">Introduction</span><h1>What is Question Answering?<span class="gu">પ્રશ્ન-જવાબ એટલે શું?</span></h1></div>
-<p class="reveal" style="max-width:70ch; color:var(--text-mute); font-size:1.05rem;">Question Answering (QA) is the branch of Natural Language Processing concerned with automatically producing a precise answer to a question posed in natural language, rather than a ranked list of documents that might contain it. A QA system reads, searches, and reasons over a knowledge source — a PDF, a website, a database — and returns the specific span of text (or a freshly generated sentence) that answers the question.</p>
-
-<section class="reveal">
-  <div class="lockup"><span class="eyebrow">Two families</span><h2>How QA systems work<span class="gu">કાર્યપદ્ધતિ</span></h2></div>
-  <div class="grid grid-2">
-    <div class="card">
-      <h3>Extractive QA</h3>
-      <p>Locates the exact span of text in a source document that answers the question. Fast, grounded, and hard to hallucinate — but limited to what is written verbatim.</p>
+  <div id="progress-bar"></div>
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:.4rem;">
+      <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
+      <a class="brand" href="./index.html">
+        <span class="brand-en">Question</span>
+      </a>
     </div>
-    <div class="card">
-      <h3>Generative / Retrieval-Augmented QA</h3>
-      <p>Retrieves the most relevant passages, then hands them to a language model that composes a fluent answer in its own words. More natural, but only as reliable as its retrieval step.</p>
+    <div class="topbar-tools">
+      <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
     </div>
-  </div>
-</section>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading">Repository</div>
+      <nav>
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link active" href="./about.html">About the System</a>
+        <a class="nav-link" href="./concepts.html">NLP Concepts</a>
+        <a class="nav-link" href="./workflow.html">Workflow</a>
+        <a class="nav-link" href="./comparison.html">Comparison</a>
+        <a class="nav-link" href="./applications.html">Applications</a>
+        <a class="nav-link" href="./research.html">Research</a>
+        <a class="nav-link" href="./sustainability.html">Sustainability</a>
+        <a class="nav-link" href="./team.html">Team</a>
+        <a class="nav-link" href="./references.html">References</a>
+      </nav>
+    </aside>
+    <main>
 
-<section class="reveal">
-  <div class="lockup"><span class="eyebrow">This project</span><h2>Scope of this repository<span class="gu">આ પ્રોજેક્ટનો વ્યાપ</span></h2></div>
-  <p style="max-width:70ch; color:var(--text-mute);">This repository documents a bilingual QA pipeline that accepts questions in either English or Gujarati, detects the language automatically, retrieves relevant passages using vector search, and returns an answer in the same script the question was asked in. It draws on retrieval-augmented generation (RAG), multilingual embeddings, and transformer-based language models — each explained on the <a href="concepts.html">Concepts</a> page.</p>
-</section>
-  </main>
-</div>
-<footer>
-  Question ⇄ પ્રશ્ન — Bilingual Question Answering Systems &middot; A student NLP knowledge repository &middot; Built for the classroom, documented like a product.
-</footer>
-<button id="top-btn" aria-label="Back to top">↑</button>
-<script src="./js/script.js"></script>
+      <div class="lockup"><span class="eyebrow">Introduction</span>
+        <h1>What is Question Answering?</h1>
+      </div>
+      <p class="reveal" style="max-width:70ch; color:var(--text-mute); font-size:1.05rem;">Question Answering (QA) is
+        the branch of Natural Language Processing concerned with automatically producing a precise answer to a question
+        posed in natural language, rather than a ranked list of documents that might contain it. A QA system reads,
+        searches, and reasons over a knowledge source — a PDF, a website, a database — and returns the specific span of
+        text (or a freshly generated sentence) that answers the question.</p>
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Two families</span>
+          <h2>How QA systems work</h2>
+        </div>
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Extractive QA</h3>
+            <p>Locates the exact span of text in a source document that answers the question. Fast, grounded, and hard
+              to hallucinate — but limited to what is written verbatim.</p>
+          </div>
+          <div class="card">
+            <h3>Generative / Retrieval-Augmented QA</h3>
+            <p>Retrieves the most relevant passages, then hands them to a language model that composes a fluent answer
+              in its own words. More natural, but only as reliable as its retrieval step.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">This project</span>
+          <h2>Scope of this repository</h2>
+        </div>
+        <p style="max-width:70ch; color:var(--text-mute);">This repository documents a bilingual QA pipeline that
+          accepts questions in either English or Gujarati, detects the language automatically, retrieves relevant
+          passages using vector search, and returns an answer in the same script the question was asked in. It draws on
+          retrieval-augmented generation (RAG), multilingual embeddings, and transformer-based language models — each
+          explained on the <a href="concepts.html">Concepts</a> page.</p>
+      </section>
+    </main>
+  </div>
+  <footer>
+    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+  <button id="top-btn" aria-label="Back to top">↑</button>
+  <script src="./js/script.js"></script>
 </body>
+
 </html>

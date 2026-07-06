@@ -1,77 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workflow · Question ⇄ પ્રશ્ન</title>
-<meta name="description" content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workflow · Question</title>
+  <meta name="description"
+    content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-<div id="progress-bar"></div>
-<header class="topbar">
-  <div style="display:flex;align-items:center;gap:.4rem;">
-    <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
-    <a class="brand" href="./index.html">
-      <span class="brand-en">Question</span><span class="brand-gu">પ્રશ્ન</span>
-    </a>
+  <div id="progress-bar"></div>
+  <header class="topbar">
+    <div style="display:flex;align-items:center;gap:.4rem;">
+      <button id="nav-toggle" class="icon-btn" aria-label="Toggle navigation">☰</button>
+      <a class="brand" href="./index.html">
+        <span class="brand-en">Question</span>
+      </a>
+    </div>
+    <div class="topbar-tools">
+      <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
+      <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
+    </div>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-heading">Repository</div>
+      <nav>
+        <a class="nav-link" href="./index.html">Home</a>
+        <a class="nav-link" href="./about.html">About the System</a>
+        <a class="nav-link" href="./concepts.html">NLP Concepts</a>
+        <a class="nav-link active" href="./workflow.html">Workflow</a>
+        <a class="nav-link" href="./comparison.html">Comparison</a>
+        <a class="nav-link" href="./applications.html">Applications</a>
+        <a class="nav-link" href="./research.html">Research</a>
+        <a class="nav-link" href="./sustainability.html">Sustainability</a>
+        <a class="nav-link" href="./team.html">Team</a>
+        <a class="nav-link" href="./references.html">References</a>
+      </nav>
+    </aside>
+    <main>
+
+      <div class="lockup"><span class="eyebrow">Pipeline</span>
+        <h1>Workflow</h1>
+      </div>
+      <p class="reveal" style="max-width:70ch; color:var(--text-mute);">One shared pipeline, with a language-detection
+        fork near the front and a script-aware step near the end. Below: the general pipeline, then the English and
+        Gujarati paths in full.</p>
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">General</span>
+          <h2>NLP Pipeline</h2>
+        </div>
+        <div class="pipeline">
+          <div class="pipe-step">Question</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Language Detection</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Preprocessing</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Vector Search</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Answer Retrieval</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Display Answer</div>
+        </div>
+      </section>
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Path A</span>
+          <h2>English Pipeline</h2>
+        </div>
+        <div class="pipeline">
+          <div class="pipe-step">English Question</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Tokenizer</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Search</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Answer</div>
+        </div>
+        <p style="color:var(--text-mute); max-width:65ch;">Standard subword tokenization applies directly — English NLP
+          tooling and pretrained models are the default case most libraries are built around.</p>
+      </section>
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Path B</span>
+          <h2>Gujarati Pipeline</h2>
+        </div>
+        <div class="pipeline">
+          <div class="pipe-step">Gujarati Question</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Unicode Processing</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Tokenizer</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Search</div><span class="pipe-arrow">→</span>
+          <div class="pipe-step">Gujarati Answer</div>
+        </div>
+        <p style="color:var(--text-mute); max-width:65ch;">An extra Unicode normalization step comes first — Gujarati
+          text can arrive in visually identical but byte-different forms (combining marks vs. precomposed characters),
+          and normalizing that before tokenization prevents silent retrieval failures.</p>
+      </section>
+
+      <section class="reveal card">
+        <h3>Why the fork happens where it does</h3>
+        <p style="color:var(--text-mute);">Language detection runs once, immediately after the question arrives, so
+          every downstream component — tokenizer, embedding model, and the script used to render the final answer — can
+          be chosen correctly for that language rather than guessed at each step.</p>
+      </section>
+    </main>
   </div>
-  <div class="topbar-tools">
-    <input id="search-input" type="text" placeholder="Search concepts…" aria-label="Search">
-    <button id="theme-toggle" class="icon-btn" aria-label="Toggle dark mode">☾</button>
-  </div>
-</header>
-<div class="shell">
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-heading">Repository</div>
-    <nav>
-      <a class="nav-link" href="./index.html"><span class="en">Home</span><span class="gu">ઘર</span></a>
-      <a class="nav-link" href="./about.html"><span class="en">About the System</span><span class="gu">વિશે</span></a>
-      <a class="nav-link" href="./concepts.html"><span class="en">NLP Concepts</span><span class="gu">ખ્યાલો</span></a>
-      <a class="nav-link active" href="./workflow.html"><span class="en">Workflow</span><span class="gu">કાર્યપ્રવાહ</span></a>
-      <a class="nav-link" href="./comparison.html"><span class="en">Comparison</span><span class="gu">તુલના</span></a>
-      <a class="nav-link" href="./applications.html"><span class="en">Applications</span><span class="gu">ઉપયોગો</span></a>
-      <a class="nav-link" href="./research.html"><span class="en">Research</span><span class="gu">સંશોધન</span></a>
-      <a class="nav-link" href="./sustainability.html"><span class="en">Sustainability</span><span class="gu">ટકાઉપણું</span></a>
-      <a class="nav-link" href="./team.html"><span class="en">Team</span><span class="gu">ટીમ</span></a>
-      <a class="nav-link" href="./references.html"><span class="en">References</span><span class="gu">સંદર્ભો</span></a>
-    </nav>
-  </aside>
-  <main>
-
-<div class="lockup"><span class="eyebrow">Pipeline</span><h1>Workflow<span class="gu">કાર્યપ્રવાહ</span></h1></div>
-<p class="reveal" style="max-width:70ch; color:var(--text-mute);">One shared pipeline, with a language-detection fork near the front and a script-aware step near the end. Below: the general pipeline, then the English and Gujarati paths in full.</p>
-
-<section class="reveal">
-  <div class="lockup"><span class="eyebrow">General</span><h2>NLP Pipeline<span class="gu">સામાન્ય પ્રવાહ</span></h2></div>
-  <div class="pipeline"><div class="pipe-step">Question</div><span class="pipe-arrow">→</span><div class="pipe-step">Language Detection</div><span class="pipe-arrow">→</span><div class="pipe-step">Preprocessing</div><span class="pipe-arrow">→</span><div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span><div class="pipe-step">Vector Search</div><span class="pipe-arrow">→</span><div class="pipe-step">Answer Retrieval</div><span class="pipe-arrow">→</span><div class="pipe-step">Display Answer</div></div>
-</section>
-
-<section class="reveal">
-  <div class="lockup"><span class="eyebrow">Path A</span><h2>English Pipeline<span class="gu">અંગ્રેજી પ્રવાહ</span></h2></div>
-  <div class="pipeline"><div class="pipe-step">English Question</div><span class="pipe-arrow">→</span><div class="pipe-step">Tokenizer</div><span class="pipe-arrow">→</span><div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span><div class="pipe-step">Search</div><span class="pipe-arrow">→</span><div class="pipe-step">Answer</div></div>
-  <p style="color:var(--text-mute); max-width:65ch;">Standard subword tokenization applies directly — English NLP tooling and pretrained models are the default case most libraries are built around.</p>
-</section>
-
-<section class="reveal">
-  <div class="lockup"><span class="eyebrow">Path B</span><h2>Gujarati Pipeline<span class="gu">ગુજરાતી પ્રવાહ</span></h2></div>
-  <div class="pipeline"><div class="pipe-step">Gujarati Question</div><span class="pipe-arrow">→</span><div class="pipe-step">Unicode Processing</div><span class="pipe-arrow">→</span><div class="pipe-step">Tokenizer</div><span class="pipe-arrow">→</span><div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span><div class="pipe-step">Search</div><span class="pipe-arrow">→</span><div class="pipe-step">Gujarati Answer</div></div>
-  <p style="color:var(--text-mute); max-width:65ch;">An extra Unicode normalization step comes first — Gujarati text can arrive in visually identical but byte-different forms (combining marks vs. precomposed characters), and normalizing that before tokenization prevents silent retrieval failures.</p>
-</section>
-
-<section class="reveal card">
-  <h3>Why the fork happens where it does</h3>
-  <p style="color:var(--text-mute);">Language detection runs once, immediately after the question arrives, so every downstream component — tokenizer, embedding model, and the script used to render the final answer — can be chosen correctly for that language rather than guessed at each step.</p>
-</section>
-  </main>
-</div>
-<footer>
-  Question ⇄ પ્રશ્ન — Bilingual Question Answering Systems &middot; A student NLP knowledge repository &middot; Built for the classroom, documented like a product.
-</footer>
-<button id="top-btn" aria-label="Back to top">↑</button>
-<script src="./js/script.js"></script>
+  <footer>
+    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository
+  </footer>
+  <button id="top-btn" aria-label="Back to top">↑</button>
+  <script src="./js/script.js"></script>
 </body>
+
 </html>
