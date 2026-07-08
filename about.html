@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About the System · Question</title>
+  <title>About the System</title>
   <meta name="description"
     content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -48,52 +48,97 @@
     <main>
 
       <div class="lockup"><span class="eyebrow">Introduction</span>
-        <h1>What is Question Answering?</h1>
+        <h1>What is Natural Language Processing (NLP)?</h1>
       </div>
-      <p class="reveal" style="max-width:70ch; color:var(--text-mute); font-size:1.05rem;">Question Answering (QA) is
-        the branch of Natural Language Processing concerned with automatically producing a precise answer to a question
-        posed in natural language, rather than a ranked list of documents that might contain it. A QA system reads,
-        searches, and reasons over a knowledge source — a PDF, a website, a database — and returns the specific span of
-        text (or a freshly generated sentence) that answers the question.</p>
-
-      <div class="reveal"
-        style="margin: 2rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 70ch;">
-        <img src="assets/nlp%20&%20nlu.png" alt="NLP and NLU Overview"
-          style="width: 100%; height: auto; display: block;">
-      </div>
+      <p class="reveal" style="max-width:70ch; color:var(--text-mute); font-size:1.05rem;">Natural Language
+        Processing (NLP) is a branch of Artificial Intelligence (AI) that enables computers to understand, process,
+        analyze, and generate human language. It combines computer science, linguistics, and machine learning to
+        convert unstructured text into meaningful information. NLP forms the foundation of many real-world
+        applications, including search engines, chatbots, machine translation, sentiment analysis, text
+        summarization, and question-answering systems.</p>
 
       <section class="reveal">
-        <div class="lockup"><span class="eyebrow">Two families</span>
-          <h2>How QA systems work</h2>
+        <div class="lockup"><span class="eyebrow">Two fields</span>
+          <h2>NLP and Natural Language Understanding (NLU)</h2>
         </div>
+        <p style="max-width:70ch; color:var(--text-mute);">Natural Language Processing involves several stages that
+          transform raw text into structured information that machines can understand.</p>
+
+        <div class="reveal"
+          style="margin: 1.5rem 0 2rem; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 70ch;">
+          <img src="assets/nlp%20&%20nlu.png" alt="NLP and NLU Overview"
+            style="width: 100%; height: auto; display: block;">
+        </div>
+
         <div class="grid grid-2">
           <div class="card">
-            <h3>Extractive QA</h3>
-            <p>Locates the exact span of text in a source document that answers the question. Fast, grounded, and hard
-              to hallucinate — but limited to what is written verbatim.</p>
+            <h3>Natural Language Processing (NLP)</h3>
+            <p>Focuses on processing and analyzing text using techniques such as text preprocessing, feature
+              engineering, language representation, and language modeling.</p>
           </div>
           <div class="card">
-            <h3>Generative / Retrieval-Augmented QA</h3>
-            <p>Retrieves the most relevant passages, then hands them to a language model that composes a fluent answer
-              in its own words. More natural, but only as reliable as its retrieval step.</p>
+            <h3>Natural Language Understanding (NLU)</h3>
+            <p>A subfield of NLP that enables machines to interpret the meaning, context, and intent behind human
+              language.</p>
           </div>
         </div>
+        <p style="max-width:70ch; color:var(--text-mute); margin-top:1.5rem;">Together, NLP and NLU enable
+          intelligent systems to understand and interact with users in natural language.</p>
+      </section>
+
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Foundations</span>
+          <h2>Core NLP Concepts</h2>
+        </div>
+        <p style="max-width:70ch; color:var(--text-mute);">This repository covers the fundamental concepts of Natural
+          Language Processing, including:</p>
+
+        <div class="grid grid-2">
+          <div class="card">
+            <h3>Text Preprocessing</h3>
+            <p>Sentence Segmentation, Tokenization, Case Normalization, Stop-word Removal, Stemming, Lemmatization,
+              Noise Removal, and Text Cleaning.</p>
+          </div>
+          <div class="card">
+            <h3>Feature Engineering</h3>
+            <p>Bag of Words, N-Grams, Term Frequency (TF), Inverse Document Frequency (IDF), and TF-IDF.</p>
+          </div>
+          <div class="card">
+            <h3>Language Representation</h3>
+            <p>One-Hot Encoding, Word Embeddings, Word2Vec, FastText, and Contextual Embeddings.</p>
+          </div>
+          <div class="card">
+            <h3>Language Models</h3>
+            <p>Statistical Language Models, Neural Language Models, and Transformer-based Representations.</p>
+          </div>
+        </div>
+        <p style="max-width:70ch; color:var(--text-mute); margin-top:1.5rem;">These concepts form the foundation of
+          modern NLP systems by converting raw text into structured representations that can be understood and
+          processed by machine learning models. Each is explored in full on the <a href="concepts.html">NLP
+            Concepts</a> page.</p>
       </section>
 
       <section class="reveal">
         <div class="lockup"><span class="eyebrow">This project</span>
-          <h2>Scope of this repository</h2>
+          <h2>Scope of this Repository</h2>
         </div>
-        <p style="max-width:70ch; color:var(--text-mute);">This repository documents a bilingual QA pipeline that
-          accepts questions in either English or Gujarati, detects the language automatically, retrieves relevant
-          passages using vector search, and returns an answer in the same script the question was asked in. It draws on
-          retrieval-augmented generation (RAG), multilingual embeddings, and transformer-based language models — each
-          explained on the <a href="concepts.html">Concepts</a> page.</p>
+        <p style="max-width:70ch; color:var(--text-mute);">This repository serves as a knowledge artifact explaining
+          the core concepts of Natural Language Processing. Each concept is presented with its definition, purpose,
+          working principle, examples, advantages, limitations, and real-world applications. The repository also
+          includes comparison tables, workflow diagrams, and research insights to provide a comprehensive
+          understanding of NLP.</p>
+        <p style="max-width:70ch; color:var(--text-mute); margin-top:1rem;">To demonstrate the practical application
+          of these concepts, the repository references <strong> a bilingual English–Gujarati Question Answering (QA)
+            system</strong>.
+          The project applies techniques such as text preprocessing, tokenization, multilingual word embeddings, and
+          transformer-based representations to process and understand queries in both English and Gujarati. This
+          illustrates how fundamental NLP concepts can be combined to build multilingual, real-world language
+          processing applications.</p>
       </section>
     </main>
   </div>
   <footer>
-    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+    Made by Hetvi Bhanushali and Prince Savaniya · NLP Knowledge Artifact Repository</footer>
   <button id="top-btn" aria-label="Back to top">↑</button>
   <script src="./js/script.js"></script>
 </body>

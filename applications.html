@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Applications · Question</title>
+  <title>Applications</title>
   <meta name="description"
     content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +50,6 @@
       <div class="lockup"><span class="eyebrow">Real-world use</span>
         <h1>Applications</h1>
       </div>
-      <p class="reveal" style="max-width:70ch; color:var(--text-mute);">Six domains where a bilingual QA system changes
-        who can get an answer, not just how fast.</p>
 
       <div class="reveal"
         style="margin: 2rem 0; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); box-shadow: var(--shadow); max-width: 76ch;">
@@ -59,11 +57,63 @@
           style="width: 100%; height: auto; display: block;">
       </div>
 
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Core NLP</span>
+          <h2>Applications by Concept</h2>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Application</th>
+              <th>Concepts Used</th>
+              <th>Why it's Used</th>
+              <th>Benefits</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Search Engines</td>
+              <td>Text preprocessing, TF-IDF, Word Embeddings</td>
+              <td>Retrieves the most relevant documents based on a user's query</td>
+              <td>Fast, accurate information retrieval</td>
+            </tr>
+            <tr>
+              <td>Chatbots &amp; Virtual Assistants</td>
+              <td>Tokenization, Embeddings, Language Models</td>
+              <td>Understands user queries and generates meaningful responses</td>
+              <td>24/7 support and an improved user experience</td>
+            </tr>
+            <tr>
+              <td>Machine Translation (English ↔ Gujarati)</td>
+              <td>Tokenization, Word Embeddings, Neural Language Models</td>
+              <td>Translates text between English and Gujarati while preserving meaning</td>
+              <td>Breaks language barriers, supports multilingual communication</td>
+            </tr>
+            <tr>
+              <td>Sentiment Analysis</td>
+              <td>Text preprocessing, TF-IDF, Word Embeddings</td>
+              <td>Determines whether text expresses positive, negative, or neutral sentiment</td>
+              <td>Useful for product reviews, feedback, and social media analysis</td>
+            </tr>
+            <tr>
+              <td>Text Summarization</td>
+              <td>Text preprocessing, Language Models</td>
+              <td>Produces concise summaries of lengthy documents</td>
+              <td>Saves reading time, highlights key information</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div class="lockup reveal" style="margin-top:2.5rem;"><span class="eyebrow">Domain use</span>
+        <h2>Where This System Fits</h2>
+      </div>
+
       <section class="grid grid-2">
 
         <div class="card app-card reveal">
           <h3>Education</h3>
-          <p><strong>Relevant concepts:</strong> RAG, extractive QA, semantic search</p>
+          <p><strong>Concepts used:</strong> Text preprocessing, tokenization, TF-IDF / embeddings, retrieval QA</p>
           <p><strong>Why it's needed:</strong> Students often need an answer buried inside a textbook chapter or lecture
             PDF, not the whole document.</p>
           <p><strong>Benefits:</strong> Faster doubt-resolution, self-paced learning, works in the student's own
@@ -73,7 +123,7 @@
 
         <div class="card app-card alt reveal">
           <h3>Customer Support</h3>
-          <p><strong>Relevant concepts:</strong> RAG, embeddings, transformers</p>
+          <p><strong>Concepts used:</strong> Tokenization, word embeddings, language models, RAG</p>
           <p><strong>Why it's needed:</strong> Support teams field the same questions repeatedly across product manuals
             and policy documents.</p>
           <p><strong>Benefits:</strong> Instant, consistent answers around the clock; reduces ticket load on human
@@ -83,7 +133,8 @@
 
         <div class="card app-card reveal">
           <h3>Government Citizen Services</h3>
-          <p><strong>Relevant concepts:</strong> Multilingual models, Gujarati NLP pipeline</p>
+          <p><strong>Concepts used:</strong> Gujarati preprocessing pipeline, tokenization, multilingual (mBERT)
+            embeddings</p>
           <p><strong>Why it's needed:</strong> Citizens interacting with government schemes and forms often prefer their
             regional language over English.</p>
           <p><strong>Benefits:</strong> Wider reach, reduced dependency on intermediaries, more equitable access to
@@ -93,7 +144,7 @@
 
         <div class="card app-card alt reveal">
           <h3>Healthcare Information</h3>
-          <p><strong>Relevant concepts:</strong> Extractive QA, retrieval, safety-aware generation</p>
+          <p><strong>Concepts used:</strong> Text preprocessing, stop-word removal, extractive QA, retrieval</p>
           <p><strong>Why it's needed:</strong> Patients need quick, accurate answers from medical leaflets and health
             advisories, in a language they trust.</p>
           <p><strong>Benefits:</strong> Improves health literacy, reduces miscommunication, supports rural clinics with
@@ -102,28 +153,29 @@
 
 
         <div class="card app-card reveal">
-          <h3>Legal Document Search</h3>
-          <p><strong>Relevant concepts:</strong> Vector search, FAISS, retrieval QA</p>
-          <p><strong>Why it's needed:</strong> Legal documents are long, dense, and precise wording matters — exactly
-            what retrieval-based QA is built for.</p>
-          <p><strong>Benefits:</strong> Cuts research time, surfaces the exact clause instead of the whole contract.</p>
-        </div>
-
-
-        <div class="card app-card alt reveal">
           <h3>Banking</h3>
-          <p><strong>Relevant concepts:</strong> RAG, transformers, intent-aware retrieval</p>
+          <p><strong>Concepts used:</strong> Tokenization, word embeddings, language models, intent-aware retrieval</p>
           <p><strong>Why it's needed:</strong> Customers ask policy and procedure questions that live inside dense
             terms-and-conditions documents.</p>
           <p><strong>Benefits:</strong> Reduces branch and call-centre load, gives consistent answers across channels.
           </p>
         </div>
 
+
+        <div class="card app-card alt reveal">
+          <h3>Legal Document Search <span
+              style="font-weight:400; font-size:.8em; color:var(--text-mute);">(optional)</span></h3>
+          <p><strong>Concepts used:</strong> TF-IDF, vector search (FAISS), retrieval QA</p>
+          <p><strong>Why it's needed:</strong> Legal documents are long, dense, and precise wording matters — exactly
+            what retrieval-based QA is built for.</p>
+          <p><strong>Benefits:</strong> Cuts research time, surfaces the exact clause instead of the whole contract.</p>
+        </div>
+
       </section>
     </main>
   </div>
   <footer>
-    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+    Made by Hetvi Bhanushali and Prince Savaniya · NLP Knowledge Artifact Repository</footer>
   <button id="top-btn" aria-label="Back to top">↑</button>
   <script src="./js/script.js"></script>
 </body>

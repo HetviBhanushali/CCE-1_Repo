@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Workflow · Question</title>
+  <title>Workflow</title>
   <meta name="description"
     content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +13,64 @@
     href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Sans+Gujarati:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./css/style.css">
+  <style>
+    .flow-vertical {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .25rem;
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+
+    .flow-vertical .pipe-step {
+      white-space: normal;
+      max-width: 32ch;
+      line-height: 1.35;
+    }
+
+    .flow-down {
+      color: var(--text-mute);
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1;
+    }
+
+    .flow-branch {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      width: 100%;
+      margin: .5rem 0;
+      padding: 1rem;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius);
+    }
+
+    .flow-column {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .25rem;
+    }
+
+    .flow-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: .78rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--text-mute);
+      margin-bottom: .35rem;
+    }
+
+    @media (max-width: 640px) {
+      .flow-branch {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -75,48 +133,140 @@
         </div>
       </section>
 
+
+
       <section class="reveal">
-        <div class="lockup"><span class="eyebrow">Path A</span>
-          <h2>English Pipeline</h2>
+        <div class="lockup"><span class="eyebrow">Detail · 1</span>
+          <h2>Complete Text Preprocessing Pipeline</h2>
         </div>
-        <div class="pipeline">
-          <div class="pipe-step">English Question</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Tokenizer</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Search</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Answer</div>
+        <p style="color:var(--text-mute); max-width:65ch;">The generic pipeline above hides a branch: once the
+          language is detected, English and Gujarati text are cleaned, tokenized, and normalized on separate paths
+          before rejoining as preprocessed text.</p>
+
+        <div class="flow-vertical">
+          <div class="pipe-step">Raw English &amp; Gujarati Text</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Text Collection</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Unicode Normalization</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Language Detection</div>
+          <div class="flow-down">↓</div>
+
+          <div class="flow-branch">
+            <div class="flow-column">
+              <div class="flow-label">English Path</div>
+              <div class="pipe-step">Text Cleaning<br><span style="font-weight:400; font-size:.85em;">(HTML, URLs,
+                  special characters)</span></div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Tokenization</div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Stop-word Removal (English)</div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Lemmatization</div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Lowercasing</div>
+            </div>
+            <div class="flow-column">
+              <div class="flow-label">Gujarati Path</div>
+              <div class="pipe-step">Text Cleaning<br><span style="font-weight:400; font-size:.85em;">(HTML, URLs,
+                  special characters)</span></div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Gujarati Tokenization</div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Stop-word Removal (Gujarati)</div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Stemming</div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Gujarati Unicode Normalization</div>
+            </div>
+          </div>
+
+          <div class="flow-down">↓</div>
+          <div class="pipe-step" style="font-weight:600;">Preprocessed Text</div>
         </div>
-        <p style="color:var(--text-mute); max-width:65ch;">Standard subword tokenization applies directly — English NLP
-          tooling and pretrained models are the default case most libraries are built around.</p>
       </section>
 
       <section class="reveal">
-        <div class="lockup"><span class="eyebrow">Path B</span>
-          <h2>Gujarati Pipeline</h2>
+        <div class="lockup"><span class="eyebrow">Detail · 2</span>
+          <h2>Feature Engineering Pipeline</h2>
         </div>
-        <div class="pipeline">
-          <div class="pipe-step">Gujarati Question</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Unicode Processing</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Tokenizer</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Embedding</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Search</div><span class="pipe-arrow">→</span>
-          <div class="pipe-step">Gujarati Answer</div>
+        <p style="color:var(--text-mute); max-width:65ch;">Preprocessed text — whether it came from the English or
+          Gujarati path — is tokenized and pushed through the same feature-extraction stage, so both languages end up
+          in a shared vector space.</p>
+
+        <div class="flow-vertical">
+          <div class="pipe-step">Preprocessed Text</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Tokenization</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Feature Extraction</div>
+          <div class="flow-down">↓</div>
+
+          <div class="flow-branch">
+            <div class="flow-column">
+              <div class="pipe-step">TF</div>
+            </div>
+            <div class="flow-column">
+              <div class="pipe-step">TF-IDF</div>
+            </div>
+            <div class="flow-column">
+              <div class="pipe-step">Word Embeddings<br><span style="font-weight:400; font-size:.85em;">(mBERT — English
+                  &amp; Gujarati)</span></div>
+              <div class="flow-down">↓</div>
+              <div class="pipe-step">Sentence Embeddings</div>
+            </div>
+          </div>
+
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Feature Selection</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step" style="font-weight:600;">Feature Matrix</div>
         </div>
-        <p style="color:var(--text-mute); max-width:65ch;">An extra Unicode normalization step comes first — Gujarati
-          text can arrive in visually identical but byte-different forms (combining marks vs. precomposed characters),
-          and normalizing that before tokenization prevents silent retrieval failures.</p>
       </section>
 
-      <section class="reveal card">
-        <h3>Why the fork happens where it does</h3>
-        <p style="color:var(--text-mute);">Language detection runs once, immediately after the question arrives, so
-          every downstream component — tokenizer, embedding model, and the script used to render the final answer — can
-          be chosen correctly for that language rather than guessed at each step.</p>
+      <section class="reveal">
+        <div class="lockup"><span class="eyebrow">Detail · 3</span>
+          <h2>Text-to-Vector Transformation Process</h2>
+        </div>
+        <p style="color:var(--text-mute); max-width:65ch;">Vocabulary mapping is language-aware: Gujarati's rich
+          morphology benefits from a subword approach like FastText, while English can rely on standard word-level
+          vocabularies just as well.</p>
+
+        <div class="flow-vertical">
+          <div class="pipe-step">Input Sentence<br><span style="font-weight:400; font-size:.85em;">(English or
+              Gujarati)</span></div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Text Cleaning</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Tokenization</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Vocabulary Mapping</div>
+          <div class="flow-down">↓</div>
+
+          <div class="flow-branch">
+            <div class="flow-column">
+              <div class="pipe-step">One-Hot</div>
+            </div>
+            <div class="flow-column">
+              <div class="pipe-step">TF-IDF</div>
+            </div>
+            <div class="flow-column">
+              <div class="pipe-step">Word2Vec / FastText<br><span style="font-weight:400; font-size:.85em;">(subword —
+                  handles Gujarati OOV)</span></div>
+            </div>
+          </div>
+
+          <div class="flow-down">↓</div>
+          <div class="pipe-step">Dense Numerical Vector</div>
+          <div class="flow-down">↓</div>
+          <div class="pipe-step" style="font-weight:600;">Model Input</div>
+        </div>
       </section>
     </main>
   </div>
   <footer>
-    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository
+    Made by Hetvi Bhanushali and Prince Savaniya · NLP Knowledge Artifact Repository
   </footer>
   <button id="top-btn" aria-label="Back to top">↑</button>
   <script src="./js/script.js"></script>

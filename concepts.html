@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NLP Concepts · Question</title>
+  <title>NLP Concepts</title>
   <meta name="description"
     content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,37 +50,41 @@
       <div class="lockup"><span class="eyebrow">Reference</span>
         <h1>NLP Concepts</h1>
       </div>
-      <p class="reveal" style="max-width:70ch; color:var(--text-mute);">Nine building blocks behind the pipeline, each
-        explained the same way: definition, purpose, mechanism, a worked example, and where it shows up in practice. Use
-        the search box above to filter.</p>
+      <p class="reveal" style="max-width:70ch; color:var(--text-mute);">The building blocks behind the pipeline,
+        grouped into four stages — text preprocessing, feature engineering, language representation, and language
+        models.</p>
+      <div class="lockup reveal" style="margin-top:2rem;"><span class="eyebrow">Stage 1</span>
+        <h2>Text Preprocessing</h2>
+      </div>
       <section class="grid grid-2 reveal">
 
         <details class="card"
-          data-search="Question Answering An NLP task where a system returns a direct answer to a natural-language question instead of a list of documents. Collapses the gap between asking and knowing — the user gets the answer, not the homework of finding it. Combines retrieval (finding relevant text) with either span extraction or answer generation. Q: &quot;Who founded Infosys?&quot; → A: &quot;N. R. Narayana Murthy.&quot;">
-          <summary>Question Answering</summary>
+          data-search="Sentence Segmentation Dividing a block of text into individual sentences. Many downstream steps operate per sentence, so splitting text at sentence boundaries keeps units meaningful. Rule-based or model-based boundary detection using punctuation, abbreviation lists, and capitalization cues in English, or sentence-ending punctuation in Gujarati. A long Gujarati paragraph answer is segmented into sentences before being scored for relevance to the question.">
+          <summary>Sentence Segmentation</summary>
           <dl>
             <dt>Definition</dt>
-            <dd>An NLP task where a system returns a direct answer to a natural-language question instead of a list of
-              documents.</dd>
+            <dd>Dividing a block of text into individual sentences.</dd>
             <dt>Purpose</dt>
-            <dd>Collapses the gap between asking and knowing — the user gets the answer, not the homework of finding it.
-            </dd>
+            <dd>Many downstream steps — tokenization, embeddings — operate per sentence, so splitting text at sentence
+              boundaries keeps each processing unit meaningful.</dd>
             <dt>How it works</dt>
-            <dd>Combines retrieval (finding relevant text) with either span extraction or answer generation.</dd>
+            <dd>Rule-based or model-based boundary detection using punctuation, abbreviation lists, and capitalization
+              cues for English, or sentence-ending punctuation for Gujarati.</dd>
             <dt>Example</dt>
-            <dd>Q: "Who founded Infosys?" → A: "N. R. Narayana Murthy."</dd>
+            <dd>In our bilingual English–Gujarati QA system, a long Gujarati paragraph answer is segmented into
+              sentences before being scored for relevance to the question.</dd>
             <dt>Advantages</dt>
-            <dd>Fast, precise, reduces reading effort.</dd>
+            <dd>Keeps context units coherent; simplifies later processing.</dd>
             <dt>Limitations</dt>
-            <dd>Only as good as its source documents and retrieval quality.</dd>
+            <dd>Abbreviations and non-standard punctuation can cause false splits, especially across scripts.</dd>
             <dt>Applications</dt>
-            <dd>Search engines, chatbots, voice assistants, helpdesks.</dd>
+            <dd>Summarization, sentence-level retrieval, translation.</dd>
           </dl>
         </details>
 
 
         <details class="card"
-          data-search="Tokenization Splitting raw text into smaller units — words, subwords, or characters — that a model can process. Neural networks operate on numbers, not text; tokenization is the first translation step. A tokenizer applies rules or a learned vocabulary (e.g. Byte-Pair Encoding) to break text into tokens, then maps each token to an ID. &quot;Gandhinagar&quot; → [&quot;Gandhi&quot;, &quot;##nagar&quot;] in a subword tokenizer.">
+          data-search="Tokenization Splitting raw text into smaller units — words, subwords, or characters — that a model can process. Neural networks operate on numbers, not text; tokenization is the first translation step. A tokenizer applies rules or a learned vocabulary to break text into tokens, then maps each token to an ID. In our bilingual English–Gujarati QA system, tokenization separates English words and Gujarati script into individual tokens before feature extraction.">
           <summary>Tokenization</summary>
           <dl>
             <dt>Definition</dt>
@@ -91,33 +95,327 @@
             <dd>A tokenizer applies rules or a learned vocabulary (e.g. Byte-Pair Encoding) to break text into tokens,
               then maps each token to an ID.</dd>
             <dt>Example</dt>
-            <dd>"Gandhinagar" → ["Gandhi", "##nagar"] in a subword tokenizer.</dd>
+            <dd>In our bilingual English–Gujarati QA system, tokenization separates English words and Gujarati script
+              into individual tokens before feature extraction.</dd>
             <dt>Advantages</dt>
             <dd>Handles rare and compound words gracefully via subwords.</dd>
             <dt>Limitations</dt>
             <dd>Script-specific quirks (like Gujarati conjuncts) need tokenizers trained on that script, not borrowed
               from English.</dd>
             <dt>Applications</dt>
-            <dd>Every step downstream: embeddings, search, generation.</dd>
+            <dd>Every step downstream: feature extraction, embeddings, search.</dd>
           </dl>
         </details>
 
 
         <details class="card"
-          data-search="Embeddings Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous space. Let a computer compare meaning, not just matching characters — 'doctor' and 'physician' land near each other. A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that vector space. A 384-dimension vector representing the sentence about the capital of Gujarat.">
-          <summary>Embeddings</summary>
+          data-search="Case Normalization Standardizing letter casing across text so the same word in different cases is treated identically. Prevents the same word in different cases from being treated as different tokens. Lowercasing applies to English text; Gujarati has no case distinction, so this step is skipped on the Gujarati path. Gandhinagar and gandhinagar are normalized to the same token before English feature extraction.">
+          <summary>Case Normalization</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Standardizing letter casing (uppercase/lowercase) across text.</dd>
+            <dt>Purpose</dt>
+            <dd>Prevents the same word in different cases from being treated as different tokens.</dd>
+            <dt>How it works</dt>
+            <dd>Lowercasing applies to English text; Gujarati has no case distinction, so this step is skipped
+              entirely on the Gujarati path.</dd>
+            <dt>Example</dt>
+            <dd>In our system, "Gandhinagar" and "gandhinagar" are normalized to the same token before English feature
+              extraction, while Gujarati text bypasses this step.</dd>
+            <dt>Advantages</dt>
+            <dd>Reduces vocabulary size, improves matching consistency.</dd>
+            <dt>Limitations</dt>
+            <dd>Can lose meaningful distinctions, such as proper nouns or acronyms, if applied carelessly.</dd>
+            <dt>Applications</dt>
+            <dd>Search, TF-IDF, keyword matching.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Stop-word Removal Removing common, low-information words like the, is, and and before further processing. Focuses downstream steps on words that carry more meaning, and shrinks the vocabulary. Words are checked against a language-specific stop-word list and dropped. The system uses a separate English and Gujarati stop-word list so common words are filtered from each language's pipeline.">
+          <summary>Stop-word Removal</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Removing common, low-information words (like "the", "is", "and") before further processing.</dd>
+            <dt>Purpose</dt>
+            <dd>Focuses downstream steps on words that carry more meaning, and shrinks the vocabulary.</dd>
+            <dt>How it works</dt>
+            <dd>Words are checked against a language-specific stop-word list and dropped.</dd>
+            <dt>Example</dt>
+            <dd>Our bilingual system uses a separate English and Gujarati stop-word list, so common function words are
+              filtered from each language's path independently.</dd>
+            <dt>Advantages</dt>
+            <dd>Reduces noise and computation for frequency-based methods like TF-IDF.</dd>
+            <dt>Limitations</dt>
+            <dd>Can remove words that matter for question phrasing (e.g. negations like "not").</dd>
+            <dt>Applications</dt>
+            <dd>TF-IDF, search indexing, classification.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Stemming Cutting a word down to an approximate root form using fixed rules. Groups related word forms together without needing a dictionary. Rule-based suffix stripping removes common inflectional endings. The Gujarati path in the pipeline uses stemming, since lightweight rule-based stripping is easier to build for Gujarati morphology than a full lemmatizer.">
+          <summary>Stemming</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Cutting a word down to an approximate root form using fixed rules.</dd>
+            <dt>Purpose</dt>
+            <dd>Groups related word forms together without needing a dictionary.</dd>
+            <dt>How it works</dt>
+            <dd>Rule-based suffix stripping (e.g. removing "-ing", "-ed", or Gujarati inflectional endings).</dd>
+            <dt>Example</dt>
+            <dd>The Gujarati path in our pipeline uses stemming, since lightweight rule-based stripping is easier to
+              build for Gujarati morphology than a full lemmatizer.</dd>
+            <dt>Advantages</dt>
+            <dd>Fast, simple, no dictionary required.</dd>
+            <dt>Limitations</dt>
+            <dd>Can produce non-words or over-strip roots.</dd>
+            <dt>Applications</dt>
+            <dd>Search indexing, quick text normalization.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Lemmatization Reducing a word to its dictionary base form using vocabulary and grammar rules. Produces linguistically correct base forms, more accurate than stemming. Uses a lexicon and part-of-speech tagging to look up the correct base form. The English path uses lemmatization since mature English lemmatizers are readily available.">
+          <summary>Lemmatization</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Reducing a word to its dictionary base form (lemma) using vocabulary and grammar rules.</dd>
+            <dt>Purpose</dt>
+            <dd>Produces linguistically correct base forms, which is more accurate than stemming.</dd>
+            <dt>How it works</dt>
+            <dd>Uses a lexicon and part-of-speech tagging to look up the correct base form of a word.</dd>
+            <dt>Example</dt>
+            <dd>The English path in our pipeline uses lemmatization ("running" → "run"), since mature English
+              lemmatizers are readily available.</dd>
+            <dt>Advantages</dt>
+            <dd>More accurate normalization than stemming; always produces real words.</dd>
+            <dt>Limitations</dt>
+            <dd>Slower, and needs language-specific resources that may not exist for Gujarati.</dd>
+            <dt>Applications</dt>
+            <dd>QA, translation, tasks needing grammatical accuracy.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Noise Removal Stripping out non-content elements from text such as HTML tags, special characters, and boilerplate formatting. Prevents irrelevant symbols from being treated as meaningful tokens. Pattern-based rules strip out markup and unwanted characters. PDF documents used as sources in the QA system often carry leftover formatting artifacts that are stripped before tokenization.">
+          <summary>Noise Removal</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Stripping out non-content elements from text, such as HTML tags, special characters, and boilerplate
+              formatting.</dd>
+            <dt>Purpose</dt>
+            <dd>Prevents irrelevant symbols from being treated as meaningful tokens.</dd>
+            <dt>How it works</dt>
+            <dd>Pattern-based rules (e.g. regular expressions) strip out markup and unwanted characters.</dd>
+            <dt>Example</dt>
+            <dd>PDF documents used as sources in our QA system often carry leftover formatting artifacts that are
+              stripped before tokenization.</dd>
+            <dt>Advantages</dt>
+            <dd>Cleans the text before more expensive processing steps.</dd>
+            <dt>Limitations</dt>
+            <dd>Overly aggressive rules can strip meaningful punctuation or characters.</dd>
+            <dt>Applications</dt>
+            <dd>Web-scraped and PDF-extracted text, social media data.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Text Cleaning The broader process of removing URLs, extra whitespace, encoding errors, and other artifacts before analysis. Ensures text entering the pipeline is well-formed and consistent. Combines noise removal with whitespace normalization and encoding fixes. URLs and stray whitespace in scraped Gujarati news text are cleaned before the text is unicode-normalized and tokenized.">
+          <summary>Text Cleaning</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>The broader process of removing URLs, extra whitespace, encoding errors, and other artifacts before
+              analysis.</dd>
+            <dt>Purpose</dt>
+            <dd>Ensures text entering the pipeline is well-formed and consistent.</dd>
+            <dt>How it works</dt>
+            <dd>Combines noise removal with whitespace normalization and encoding fixes.</dd>
+            <dt>Example</dt>
+            <dd>URLs and stray whitespace in scraped Gujarati source text are cleaned before the text is
+              Unicode-normalized and tokenized.</dd>
+            <dt>Advantages</dt>
+            <dd>Improves the reliability of every step downstream.</dd>
+            <dt>Limitations</dt>
+            <dd>Needs to be tuned per data source; overcleaning can destroy meaningful content.</dd>
+            <dt>Applications</dt>
+            <dd>Data preprocessing for any NLP pipeline.</dd>
+          </dl>
+        </details>
+
+      </section>
+
+      <div class="lockup reveal" style="margin-top:2.5rem;"><span class="eyebrow">Stage 2</span>
+        <h2>Feature Engineering</h2>
+      </div>
+      <section class="grid grid-2 reveal">
+
+        <details class="card"
+          data-search="Bag of Words A representation of text as an unordered set of word counts, ignoring grammar and word order. Turns text into a numeric form simple models can work with. Build a vocabulary from the corpus, then represent each document as a vector of word counts. A short Gujarati answer candidate is represented as counts of its vocabulary terms before being scored against the question.">
+          <summary>Bag of Words</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>A representation of text as an unordered set of word counts, ignoring grammar and word order.</dd>
+            <dt>Purpose</dt>
+            <dd>Turns text into a numeric form that simple models can work with.</dd>
+            <dt>How it works</dt>
+            <dd>Build a vocabulary from the corpus, then represent each document as a vector of word counts.</dd>
+            <dt>Example</dt>
+            <dd>A short Gujarati answer candidate can be represented as counts of its vocabulary terms before being
+              scored against the question.</dd>
+            <dt>Advantages</dt>
+            <dd>Simple, fast, easy to interpret.</dd>
+            <dt>Limitations</dt>
+            <dd>Ignores word order and context entirely.</dd>
+            <dt>Applications</dt>
+            <dd>Basic classification, spam filtering.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="N-Grams Contiguous sequences of N words or characters used as features instead of single words. Captures some local word order and context that Bag of Words misses. A sliding window of size N moves across tokenized text, generating overlapping sequences. Bigrams like government scheme carry more signal than government and scheme scored separately.">
+          <summary>N-Grams</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Contiguous sequences of N words (or characters) used as features instead of single words.</dd>
+            <dt>Purpose</dt>
+            <dd>Captures some local word order and context that Bag of Words misses.</dd>
+            <dt>How it works</dt>
+            <dd>A sliding window of size N moves across tokenized text, generating overlapping sequences.</dd>
+            <dt>Example</dt>
+            <dd>A bigram like "government scheme" carries more signal for a Government Services query than "government"
+              and "scheme" scored separately.</dd>
+            <dt>Advantages</dt>
+            <dd>Captures short phrases and local word order.</dd>
+            <dt>Limitations</dt>
+            <dd>Vocabulary size grows quickly as N increases.</dd>
+            <dt>Applications</dt>
+            <dd>Language modeling, text classification, autocomplete.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="TF Term Frequency A count of how often a word appears in a document, usually normalized by document length. Highlights words that occur frequently within a specific document. Count occurrences of a term and divide by the total number of terms in the document. A high term frequency for Gandhinagar in a passage signals that the passage is about Gandhinagar.">
+          <summary>TF (Term Frequency)</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>A count of how often a word appears in a document, usually normalized by document length.</dd>
+            <dt>Purpose</dt>
+            <dd>Highlights words that occur frequently within a specific document.</dd>
+            <dt>How it works</dt>
+            <dd>Count occurrences of a term and divide by the total number of terms in the document.</dd>
+            <dt>Example</dt>
+            <dd>A high term frequency for "Gandhinagar" in a passage signals that the passage is about Gandhinagar.</dd>
+            <dt>Advantages</dt>
+            <dd>Very fast, trivial to compute.</dd>
+            <dt>Limitations</dt>
+            <dd>Common words dominate; no notion of importance across documents.</dd>
+            <dt>Applications</dt>
+            <dd>Basic word-frequency analysis.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="IDF Inverse Document Frequency A measure of how rare or common a word is across an entire document collection. Down-weights words that appear in nearly every document and are therefore uninformative. Computed as the logarithm of total documents divided by the number of documents containing the term. A word appearing in almost every document in the QA knowledge base gets a low IDF weight.">
+          <summary>IDF (Inverse Document Frequency)</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>A measure of how rare or common a word is across an entire document collection.</dd>
+            <dt>Purpose</dt>
+            <dd>Down-weights words that appear in nearly every document and are therefore uninformative.</dd>
+            <dt>How it works</dt>
+            <dd>Computed as the logarithm of total documents divided by the number of documents containing the term.
+            </dd>
+            <dt>Example</dt>
+            <dd>A word appearing in almost every document in our QA knowledge base gets a low IDF weight.</dd>
+            <dt>Advantages</dt>
+            <dd>Surfaces distinctive, document-specific terms.</dd>
+            <dt>Limitations</dt>
+            <dd>Needs the full corpus to compute; doesn't account for meaning.</dd>
+            <dt>Applications</dt>
+            <dd>Search ranking, keyword extraction.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="TF-IDF The product of TF and IDF, scoring a word by how important it is to one document relative to the whole collection. Balances local frequency against corpus-wide rarity to find genuinely distinctive terms. Multiply a term's frequency in a document by its inverse document frequency across the corpus. TF-IDF vectors are used as one retrieval method for surfacing candidate passages before the QA system embeds and re-ranks them.">
+          <summary>TF-IDF</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>The product of TF and IDF, scoring a word by how important it is to one document relative to the whole
+              collection.</dd>
+            <dt>Purpose</dt>
+            <dd>Balances local frequency against corpus-wide rarity to find genuinely distinctive terms.</dd>
+            <dt>How it works</dt>
+            <dd>Multiply a term's frequency in a document by its inverse document frequency across the corpus.</dd>
+            <dt>Example</dt>
+            <dd>TF-IDF vectors are used as one retrieval method for surfacing candidate passages before our QA system
+              embeds and re-ranks them.</dd>
+            <dt>Advantages</dt>
+            <dd>Fast, interpretable, no GPU needed.</dd>
+            <dt>Limitations</dt>
+            <dd>Blind to meaning — exact words must match.</dd>
+            <dt>Applications</dt>
+            <dd>Lightweight keyword search, document ranking.</dd>
+          </dl>
+        </details>
+
+      </section>
+
+      <div class="lockup reveal" style="margin-top:2.5rem;"><span class="eyebrow">Stage 3</span>
+        <h2>Language Representation</h2>
+      </div>
+      <section class="grid grid-2 reveal">
+
+        <details class="card"
+          data-search="One-Hot Encoding Representing each word as a vector with a single 1 in the position for that word and 0s everywhere else. Gives every distinct word a unique, unambiguous numeric identity. A vocabulary is built and indexed; each word's vector has exactly one active position. An early proof-of-concept version of the pipeline used one-hot vectors before switching to embeddings for semantic search.">
+          <summary>One-Hot Encoding</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Representing each word as a vector with a single 1 in the position for that word and 0s everywhere
+              else.</dd>
+            <dt>Purpose</dt>
+            <dd>Gives every distinct word a unique, unambiguous numeric identity.</dd>
+            <dt>How it works</dt>
+            <dd>A vocabulary is built and indexed; each word's vector has exactly one active position.</dd>
+            <dt>Example</dt>
+            <dd>An early proof-of-concept version of our pipeline used one-hot vectors before switching to embeddings
+              for semantic search.</dd>
+            <dt>Advantages</dt>
+            <dd>Simple, unambiguous, no training required.</dd>
+            <dt>Limitations</dt>
+            <dd>Vectors are huge and sparse, and carry no notion of similarity between words.</dd>
+            <dt>Applications</dt>
+            <dd>Baseline models, simple classification tasks.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Word Embeddings Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous space. Let a computer compare meaning, not just matching characters — doctor and physician land near each other. A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that vector space. A 384-dimension vector representing the sentence about the capital of Gujarat.">
+          <summary>Word Embeddings</summary>
           <dl>
             <dt>Definition</dt>
             <dd>Dense numerical vectors that represent the meaning of a word, sentence, or document in a continuous
               space.</dd>
             <dt>Purpose</dt>
-            <dd>Let a computer compare meaning, not just matching characters — 'doctor' and 'physician' land near each
+            <dd>Let a computer compare meaning, not just matching characters — "doctor" and "physician" land near each
               other.</dd>
             <dt>How it works</dt>
-            <dd>A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in that
-              vector space.</dd>
+            <dd>A trained encoder model maps text to a fixed-length vector; semantic similarity becomes distance in
+              that vector space.</dd>
             <dt>Example</dt>
-            <dd>A 384-dimension vector representing the sentence "The capital of Gujarat is Gandhinagar."</dd>
+            <dd>In our bilingual system, a 384-dimension vector represents the sentence "The capital of Gujarat is
+              Gandhinagar" for semantic search.</dd>
             <dt>Advantages</dt>
             <dd>Enables semantic (meaning-based) search rather than exact keyword matching.</dd>
             <dt>Limitations</dt>
@@ -130,8 +428,142 @@
 
 
         <details class="card"
-          data-search="Transformers A neural network architecture built on self-attention, which lets every word in a sequence weigh every other word. Captures long-range context far better than earlier recurrent architectures, and trains in parallel. Stacks of attention and feed-forward layers process an entire sequence at once, learning which words matter to which. BERT, GPT, and Llama are all transformer variants.">
-          <summary>Transformers</summary>
+          data-search="Word2Vec An algorithm that learns one dense vector per whole word by predicting nearby words in a large corpus. Captures word meaning from usage patterns without manual labeling. A shallow neural network is trained to predict a word from its context or context from a word. Word2Vec-style vectors group related terms like doctor and physician close together in vector space.">
+          <summary>Word2Vec</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>An algorithm that learns one dense vector per whole word by predicting nearby words in a large corpus.
+            </dd>
+            <dt>Purpose</dt>
+            <dd>Captures word meaning from usage patterns without manual labeling.</dd>
+            <dt>How it works</dt>
+            <dd>A shallow neural network is trained to either predict a word from its context (CBOW) or context from a
+              word (Skip-gram).</dd>
+            <dt>Example</dt>
+            <dd>Word2Vec-style vectors can group related terms in an English question, like "doctor" and "physician",
+              close together in vector space.</dd>
+            <dt>Advantages</dt>
+            <dd>Fast to train, well understood, captures useful word relationships.</dd>
+            <dt>Limitations</dt>
+            <dd>Cannot represent out-of-vocabulary words; one fixed vector per word ignores multiple meanings.</dd>
+            <dt>Applications</dt>
+            <dd>General word-similarity tasks, feature input for classifiers.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="FastText An extension of Word2Vec that learns vectors from character n-grams and sums them to build a word's vector. Handles rare, misspelled, and morphologically complex words far better than whole-word models. Each word is broken into overlapping character n-grams; the word's embedding is the sum of its n-gram vectors. FastText's subword approach is well suited to Gujarati, where a single root can take many inflected forms.">
+          <summary>FastText</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>An extension of Word2Vec that learns vectors from character n-grams and sums them to build a word's
+              vector.</dd>
+            <dt>Purpose</dt>
+            <dd>Handles rare, misspelled, and morphologically complex words far better than whole-word models.</dd>
+            <dt>How it works</dt>
+            <dd>Each word is broken into overlapping character n-grams; the word's embedding is the sum of its n-gram
+              vectors.</dd>
+            <dt>Example</dt>
+            <dd>FastText's subword approach is well suited to our Gujarati path, where a single root can take many
+              inflected forms.</dd>
+            <dt>Advantages</dt>
+            <dd>Handles rare and misspelled words gracefully; works well for morphologically rich languages like
+              Gujarati.</dd>
+            <dt>Limitations</dt>
+            <dd>Slightly larger memory footprint than Word2Vec.</dd>
+            <dt>Applications</dt>
+            <dd>Morphologically rich languages, spelling-tolerant search.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Contextual Embeddings Word representations that change depending on the surrounding sentence, rather than one fixed vector per word. Captures the fact that a word's meaning shifts with context, something static embeddings can't do. A model reads the full sentence and produces a vector for each word conditioned on everything around it. Models such as BERT and mBERT generate contextual embeddings that help understand the meaning of words based on their surrounding context.">
+          <summary>Contextual Embeddings</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Word representations that change depending on the surrounding sentence, rather than one fixed vector
+              per word.</dd>
+            <dt>Purpose</dt>
+            <dd>Captures the fact that a word's meaning shifts with context, something static embeddings can't do.</dd>
+            <dt>How it works</dt>
+            <dd>A model reads the full sentence and produces a vector for each word conditioned on everything around
+              it.</dd>
+            <dt>Example</dt>
+            <dd>Models such as BERT and mBERT generate contextual embeddings that help understand the meaning of words
+              based on their surrounding context — the multilingual variant, mBERT, is what makes the Gujarati path
+              possible.</dd>
+            <dt>Advantages</dt>
+            <dd>Resolves ambiguity that static embeddings can't (e.g. "bank" of a river vs. a bank).</dd>
+            <dt>Limitations</dt>
+            <dd>Computationally heavier than static embeddings; needs a trained model to run.</dd>
+            <dt>Applications</dt>
+            <dd>Extractive QA, semantic search, classification.</dd>
+          </dl>
+        </details>
+
+      </section>
+
+      <div class="lockup reveal" style="margin-top:2.5rem;"><span class="eyebrow">Stage 4</span>
+        <h2>Language Models</h2>
+      </div>
+      <section class="grid grid-2 reveal">
+
+        <details class="card"
+          data-search="Statistical Language Models Models that estimate the probability of a word sequence using frequency counts from a training corpus. Provide a simple, interpretable way to predict what word is likely to come next. N-gram frequency counts are used to estimate the probability of a word given the previous words. An n-gram language model can flag that the capital of Gujarat is likely to be followed by Gandhinagar.">
+          <summary>Statistical Language Models</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Models that estimate the probability of a word sequence using frequency counts from a training corpus.
+            </dd>
+            <dt>Purpose</dt>
+            <dd>Provide a simple, interpretable way to predict what word is likely to come next.</dd>
+            <dt>How it works</dt>
+            <dd>N-gram frequency counts are used to estimate the probability of a word given the previous N-1 words.
+            </dd>
+            <dt>Example</dt>
+            <dd>An n-gram language model can flag that "the capital of Gujarat is ___" is far more likely to be
+              followed by "Gandhinagar" than an unrelated word.</dd>
+            <dt>Advantages</dt>
+            <dd>Simple, fast, requires no neural network training.</dd>
+            <dt>Limitations</dt>
+            <dd>Struggles with long-range context and unseen word combinations.</dd>
+            <dt>Applications</dt>
+            <dd>Early spell-checkers, basic autocomplete.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Neural Language Models Models that use neural networks to predict word probabilities based on learned, dense representations of context. Capture longer-range dependencies and generalize better to unseen phrasing than statistical models. A neural network is trained to predict the next word given prior context, learning patterns rather than memorizing counts. Machine translation between English and Gujarati relies on a neural language model to generate fluent target-language text.">
+          <summary>Neural Language Models</summary>
+          <dl>
+            <dt>Definition</dt>
+            <dd>Models that use neural networks to predict word probabilities based on learned, dense representations
+              of context.</dd>
+            <dt>Purpose</dt>
+            <dd>Capture longer-range dependencies and generalize better to unseen phrasing than statistical models.
+            </dd>
+            <dt>How it works</dt>
+            <dd>A neural network (recurrent or transformer-based) is trained to predict the next word given prior
+              context, learning patterns rather than memorizing counts.</dd>
+            <dt>Example</dt>
+            <dd>Machine translation between English and Gujarati in our project relies on a neural language model to
+              generate fluent target-language text.</dd>
+            <dt>Advantages</dt>
+            <dd>Handles longer context and generalizes to phrasing not seen during training.</dd>
+            <dt>Limitations</dt>
+            <dd>Needs much more data and compute than statistical models.</dd>
+            <dt>Applications</dt>
+            <dd>Machine translation, text generation, autocomplete.</dd>
+          </dl>
+        </details>
+
+
+        <details class="card"
+          data-search="Transformer-based Representations A neural network architecture built on self-attention, which lets every word in a sequence weigh every other word. Captures long-range context far better than earlier recurrent architectures, and trains in parallel. Stacks of attention and feed-forward layers process an entire sequence at once, learning which words matter to which. BERT, mBERT, GPT, and Llama are all transformer variants.">
+          <summary>Transformer-based Representations</summary>
           <dl>
             <dt>Definition</dt>
             <dd>A neural network architecture built on self-attention, which lets every word in a sequence weigh every
@@ -143,7 +575,8 @@
             <dd>Stacks of attention and feed-forward layers process an entire sequence at once, learning which words
               matter to which.</dd>
             <dt>Example</dt>
-            <dd>BERT, GPT, and Llama are all transformer variants.</dd>
+            <dd>BERT, mBERT, GPT, and Llama are all transformer variants — our system's mBERT-based embeddings and
+              answer generation both depend on this architecture.</dd>
             <dt>Advantages</dt>
             <dd>State-of-the-art accuracy across nearly all NLP tasks.</dd>
             <dt>Limitations</dt>
@@ -153,133 +586,11 @@
           </dl>
         </details>
 
-
-        <details class="card"
-          data-search="Retrieval The process of finding the passages most relevant to a query from a large collection of documents. A language model can't read an entire library before answering — retrieval narrows that library to a few relevant pages. A query is embedded, then compared against pre-embedded document chunks using a similarity metric like cosine distance. Given a 300-page textbook, retrieval surfaces the 3 paragraphs relevant to the question asked.">
-          <summary>Retrieval</summary>
-          <dl>
-            <dt>Definition</dt>
-            <dd>The process of finding the passages most relevant to a query from a large collection of documents.</dd>
-            <dt>Purpose</dt>
-            <dd>A language model can't read an entire library before answering — retrieval narrows that library to a few
-              relevant pages.</dd>
-            <dt>How it works</dt>
-            <dd>A query is embedded, then compared against pre-embedded document chunks using a similarity metric like
-              cosine distance.</dd>
-            <dt>Example</dt>
-            <dd>Given a 300-page textbook, retrieval surfaces the 3 paragraphs relevant to the question asked.</dd>
-            <dt>Advantages</dt>
-            <dd>Keeps answers grounded in real source material.</dd>
-            <dt>Limitations</dt>
-            <dd>Poor chunking or embedding choices can bury the right passage.</dd>
-            <dt>Applications</dt>
-            <dd>RAG pipelines, enterprise search, legal and medical document lookup.</dd>
-          </dl>
-        </details>
-
-
-        <details class="card"
-          data-search="RAG Retrieval-Augmented Generation An architecture that retrieves relevant passages first, then feeds them to a language model to generate the final answer. Combines the factual grounding of retrieval with the fluency of generation. Query → retrieve top-k chunks from a vector database → construct a prompt with those chunks → language model generates an answer. A PDF QA chatbot that answers questions strictly from an uploaded document.">
-          <summary>RAG (Retrieval-Augmented Generation)</summary>
-          <dl>
-            <dt>Definition</dt>
-            <dd>An architecture that retrieves relevant passages first, then feeds them to a language model to generate
-              the final answer.</dd>
-            <dt>Purpose</dt>
-            <dd>Combines the factual grounding of retrieval with the fluency of generation.</dd>
-            <dt>How it works</dt>
-            <dd>Query → retrieve top-k chunks from a vector database → construct a prompt with those chunks → language
-              model generates an answer.</dd>
-            <dt>Example</dt>
-            <dd>A PDF Q&A chatbot that answers questions strictly from an uploaded document.</dd>
-            <dt>Advantages</dt>
-            <dd>Reduces hallucination compared to a language model answering from memory alone.</dd>
-            <dt>Limitations</dt>
-            <dd>Still bounded by retrieval quality and context window size.</dd>
-            <dt>Applications</dt>
-            <dd>Document chatbots, customer support, internal knowledge assistants.</dd>
-          </dl>
-        </details>
-
-
-        <details class="card"
-          data-search="FAISS Facebook AI Similarity Search an open-source library for fast nearest-neighbour search over dense vectors. Makes it feasible to search millions of embeddings in milliseconds. Indexes vectors using structures like inverted files or HNSW graphs to avoid brute-force comparison. Searching 100,000 embedded paragraphs for the 5 closest to a question vector.">
-          <summary>FAISS</summary>
-          <dl>
-            <dt>Definition</dt>
-            <dd>Facebook AI Similarity Search — an open-source library for fast nearest-neighbour search over dense
-              vectors.</dd>
-            <dt>Purpose</dt>
-            <dd>Makes it feasible to search millions of embeddings in milliseconds.</dd>
-            <dt>How it works</dt>
-            <dd>Indexes vectors using structures like inverted files or HNSW graphs to avoid brute-force comparison.
-            </dd>
-            <dt>Example</dt>
-            <dd>Searching 100,000 embedded paragraphs for the 5 closest to a question vector.</dd>
-            <dt>Advantages</dt>
-            <dd>Extremely fast, scales to large corpora, runs locally.</dd>
-            <dt>Limitations</dt>
-            <dd>Approximate search trades a small amount of accuracy for speed at scale.</dd>
-            <dt>Applications</dt>
-            <dd>Vector databases, RAG pipelines, recommendation systems.</dd>
-          </dl>
-        </details>
-
-
-        <details class="card"
-          data-search="BERT Bidirectional Encoder Representations from Transformers a transformer model pretrained to understand context from both directions. Produces rich contextual representations of text, useful for classification, extraction, and embeddings. Pretrained on masked-word prediction and next-sentence prediction over large text corpora, then fine-tuned for specific tasks. Fine-tuned BERT extracting the exact answer span from a passage for a given question.">
-          <summary>BERT</summary>
-          <dl>
-            <dt>Definition</dt>
-            <dd>Bidirectional Encoder Representations from Transformers — a transformer model pretrained to understand
-              context from both directions.</dd>
-            <dt>Purpose</dt>
-            <dd>Produces rich contextual representations of text, useful for classification, extraction, and embeddings.
-            </dd>
-            <dt>How it works</dt>
-            <dd>Pretrained on masked-word prediction and next-sentence prediction over large text corpora, then
-              fine-tuned for specific tasks.</dd>
-            <dt>Example</dt>
-            <dd>Fine-tuned BERT extracting the exact answer span from a passage for a given question.</dd>
-            <dt>Advantages</dt>
-            <dd>Strong general-purpose language understanding.</dd>
-            <dt>Limitations</dt>
-            <dd>English-centric by default; needs a multilingual variant for Gujarati.</dd>
-            <dt>Applications</dt>
-            <dd>Extractive QA, classification, named entity recognition.</dd>
-          </dl>
-        </details>
-
-
-        <details class="card"
-          data-search="Multilingual Models Language models trained on text from many languages simultaneously, sharing a single vocabulary and parameter set. Let one model serve many languages, including lower-resource ones like Gujarati, without training from scratch for each. Trained on multilingual corpora with a shared subword vocabulary, learning cross-lingual representations. mBERT and multilingual sentence-embedding models supporting Gujarati text.">
-          <summary>Multilingual Models</summary>
-          <dl>
-            <dt>Definition</dt>
-            <dd>Language models trained on text from many languages simultaneously, sharing a single vocabulary and
-              parameter set.</dd>
-            <dt>Purpose</dt>
-            <dd>Let one model serve many languages, including lower-resource ones like Gujarati, without training from
-              scratch for each.</dd>
-            <dt>How it works</dt>
-            <dd>Trained on multilingual corpora with a shared subword vocabulary, learning cross-lingual
-              representations.</dd>
-            <dt>Example</dt>
-            <dd>mBERT and multilingual sentence-embedding models supporting Gujarati text.</dd>
-            <dt>Advantages</dt>
-            <dd>One pipeline serves multiple languages; cross-lingual transfer helps low-resource languages.</dd>
-            <dt>Limitations</dt>
-            <dd>Per-language performance is usually a notch below a model trained specifically for that language.</dd>
-            <dt>Applications</dt>
-            <dd>Bilingual and multilingual QA, cross-lingual search, translation.</dd>
-          </dl>
-        </details>
-
       </section>
     </main>
   </div>
   <footer>
-    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+    Made by Hetvi Bhanushali and Prince Savaniya · NLP Knowledge Artifact Repository</footer>
   <button id="top-btn" aria-label="Back to top">↑</button>
   <script src="./js/script.js"></script>
 </body>

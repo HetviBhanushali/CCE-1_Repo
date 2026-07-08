@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Comparative Analysis · Question</title>
+  <title>Comparative Analysis</title>
   <meta name="description"
     content="A bilingual (English + Gujarati) Question Answering Systems knowledge repository — concepts, pipelines, comparisons, applications and research.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -188,41 +188,41 @@
 
       <section class="reveal">
         <div class="lockup"><span class="eyebrow">Comparison</span>
-          <h2>English QA vs. Gujarati QA</h2>
+          <h2>Stemming vs. Lemmatization</h2>
         </div>
         <table>
           <thead>
             <tr>
               <th>Aspect</th>
-              <th>English QA</th>
-              <th>Gujarati QA</th>
+              <th>Stemming</th>
+              <th>Lemmatization</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Working</td>
-              <td>Direct use of mature English NLP tooling</td>
-              <td>Requires Unicode normalization and script-aware models</td>
+              <td>Chops word endings using fixed rules</td>
+              <td>Maps a word to its dictionary base form using vocabulary and grammar</td>
             </tr>
             <tr>
               <td>Complexity</td>
-              <td>Lower — abundant pretrained resources</td>
-              <td>Higher — smaller pretrained ecosystem</td>
+              <td>Lower — rule-based, no linguistic knowledge needed</td>
+              <td>Higher — needs POS tagging and a lexicon</td>
             </tr>
             <tr>
               <td>Advantages</td>
-              <td>High accuracy out of the box</td>
-              <td>Extends access to 55M+ Gujarati speakers</td>
+              <td>Fast, lightweight, no external resources</td>
+              <td>Produces real words, more accurate normalization</td>
             </tr>
             <tr>
               <td>Disadvantages</td>
-              <td>Excludes non-English speakers</td>
-              <td>Fewer benchmarks to validate against</td>
+              <td>Can produce non-words or over-strip roots</td>
+              <td>Slower, requires language-specific resources</td>
             </tr>
             <tr>
               <td>Use cases</td>
-              <td>Global-facing products</td>
-              <td>Regional education and citizen services</td>
+              <td>Quick indexing, search engines</td>
+              <td>QA, translation, tasks needing grammatical accuracy</td>
             </tr>
           </tbody>
         </table>
@@ -232,41 +232,41 @@
 
       <section class="reveal">
         <div class="lockup"><span class="eyebrow">Comparison</span>
-          <h2>TF-IDF vs. Embeddings</h2>
+          <h2>TF vs. TF-IDF</h2>
         </div>
         <table>
           <thead>
             <tr>
               <th>Aspect</th>
+              <th>TF</th>
               <th>TF-IDF</th>
-              <th>Embeddings</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>Working</td>
-              <td>Weighs words by frequency and rarity</td>
-              <td>Represents meaning as a dense vector</td>
+              <td>Counts raw frequency of a word in a document</td>
+              <td>Scales frequency by how rare the word is across all documents</td>
             </tr>
             <tr>
               <td>Complexity</td>
-              <td>Simple, no training required</td>
-              <td>Requires a pretrained or trained encoder</td>
+              <td>Simplest — single-document statistic</td>
+              <td>Slightly higher — requires corpus-wide document frequencies</td>
             </tr>
             <tr>
               <td>Advantages</td>
-              <td>Fast, interpretable, no GPU needed</td>
-              <td>Captures semantic similarity, handles synonyms</td>
+              <td>Very fast, trivial to compute</td>
+              <td>Down-weights common words, highlights distinctive terms</td>
             </tr>
             <tr>
               <td>Disadvantages</td>
-              <td>Blind to meaning — exact words must match</td>
-              <td>Needs more compute and a trained model</td>
+              <td>Common words dominate, no notion of importance</td>
+              <td>Still blind to meaning — exact words must match</td>
             </tr>
             <tr>
               <td>Use cases</td>
-              <td>Lightweight keyword search</td>
-              <td>Semantic search, RAG retrieval</td>
+              <td>Basic word-frequency analysis</td>
+              <td>Keyword-based document ranking, lightweight search</td>
             </tr>
           </tbody>
         </table>
@@ -275,7 +275,7 @@
     </main>
   </div>
   <footer>
-    Made by Hetvi Bhanushali and Prince Savaniya - NLP Knowledge Artifact Repository</footer>
+    Made by Hetvi Bhanushali and Prince Savaniya · NLP Knowledge Artifact Repository</footer>
   <button id="top-btn" aria-label="Back to top">↑</button>
   <script src="./js/script.js"></script>
 </body>
